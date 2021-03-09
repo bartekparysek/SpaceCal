@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { MdExpandMore } from 'react-icons/md';
 import { StyledFlight } from './NextFlight';
+import { goToFlightDetails } from '../actions';
+import Link from './Link';
+
 
 class FiveFlights extends React.Component {
    renderInfo() {
@@ -18,6 +22,10 @@ class FiveFlights extends React.Component {
                <StyledFlight key={flight.id}>
                   <h3>{flight.name}</h3>
                   <p>{flight.date_utc}</p>
+                  <Link onClick={this.props.goToFlightDetails(flight.id)} to={`/flightdetails/${flight.id}`} >
+                     Flight Details
+                     <MdExpandMore />
+                  </Link>
                </StyledFlight >
             );
          }
@@ -36,4 +44,4 @@ const mapStateToProps = state => {
    return { flights: state.flights[0] }
 };
 
-export default connect(mapStateToProps)(FiveFlights);
+export default connect(mapStateToProps, { goToFlightDetails })(FiveFlights);

@@ -17,7 +17,7 @@ class App extends React.Component {
                </Link>
                <Switch>
                   <Route path="/" exact component={FlightList} ></Route>
-                  <Route path="/flightdetails/id:" component={FlightDetails}></Route>
+                  <Route path="/flightdetails/:id" component={FlightDetails}></Route>
                </Switch>
 
             </div>

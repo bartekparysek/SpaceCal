@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
 
    body {
       color: #fff;
-      font-family: 'D-DIN-Bold';
+      font-family: 'D-DIN-Bold', sans-serif;
       margin:0 auto;
       box-sizing: border-box;
       background-color: #353B48;

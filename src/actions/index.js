@@ -6,6 +6,12 @@ export const fetchUpcomingLaunches = () => async dispatch => {
    dispatch({ type: 'FETCH_NEXT', payload: response.data });
 };
 
+export const fetchLaunch = (id) => async dispatch => {
+   const response = await spaceX.get(`/launches/${id}`)
+
+   dispatch({ type: 'FETCH_LAUNCH', payload: response.data });
+};
+
 export const goToFlightDetails = (id) => dispatch => {
 
    dispatch({ type: 'GO_DETAILS', payload: id });
