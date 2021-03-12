@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { MdEvent } from 'react-icons/md';
+import { trySignIn, trySignOut } from '../actions/'
 
 const StyledButton = styled.button`
    display:flex;
@@ -21,10 +23,14 @@ const StyledButton = styled.button`
 
 class CalendarButton extends React.Component {
 
+   addToCalendar = () => {
+      this.props.trySignIn();
+   };
+
    render() {
       return (
          <React.Fragment >
-            <StyledButton>
+            <StyledButton onClick={this.addToCalendar} >
                <MdEvent />
                Add to Calendar
             </StyledButton>
@@ -33,4 +39,8 @@ class CalendarButton extends React.Component {
    }
 }
 
-export default CalendarButton;
+const mapStateToProps = state => {
+   return { isSignedIn: state.isSignedIn }
+}
+
+export default connect(mapStateToProps, { trySignIn })(CalendarButton);
