@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { MdEvent } from 'react-icons/md';
-import { trySignIn, trySignOut } from '../actions/'
 
 const StyledButton = styled.button`
    display:flex;
@@ -22,15 +21,26 @@ const StyledButton = styled.button`
 `;
 
 class CalendarButton extends React.Component {
-
-   addToCalendar = () => {
-      this.props.trySignIn();
+   addEvent = () => {
+      const flightId = this.props.flightId;
+      const flight = this.props.flights.filter(flight => flight.id === flightId)
+      const event = {
+         'summary': flight.name,
+         'description': flight.description,
+         'start': {
+            'dateTime':
+         },
+      }
+      const request = window.gapi.client.calendar.events.insert({
+         'calendarId': this.props.email,
+         'resource': event
+      });
    };
 
    render() {
       return (
          <React.Fragment >
-            <StyledButton onClick={this.addToCalendar} >
+            <StyledButton onClick={this.addEvent} >
                <MdEvent />
                Add to Calendar
             </StyledButton>
@@ -40,7 +50,11 @@ class CalendarButton extends React.Component {
 }
 
 const mapStateToProps = state => {
-   return { isSignedIn: state.isSignedIn }
+   return {
+      isSignedIn: state.auth.isSignedIn,
+      email: state.auth.userEmail,
+      flights: state.flights[0]
+   }
 }
 
-export default connect(mapStateToProps, { trySignIn })(CalendarButton);
+export default connect(mapStateToProps,)(CalendarButton);

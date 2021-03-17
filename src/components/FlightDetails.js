@@ -13,7 +13,7 @@ const StyledDetails = styled.div`
    border-radius:10px;
 `;
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
    background-color:#27292F;
    border-radius:10px;
    color: #fff;
@@ -30,7 +30,7 @@ const StyledButton = styled.button`
 
 `;
 
-const StyledWrapper = styled.div`
+export const StyledWrapper = styled.div`
    display:flex;
    justify-content:space-between;
    padding: 0 0.5rem 0 0;

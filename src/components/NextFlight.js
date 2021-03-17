@@ -49,7 +49,7 @@ class NextFlight extends React.Component {
                   <MdExpandMore />
                </Link>
             </StyledWrapper>
-            <CalendarButton />
+            <CalendarButton flightId={flight.id} />
          </React.Fragment>
 
 

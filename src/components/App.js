@@ -4,6 +4,8 @@ import FlightDetails from './FlightDetails';
 import Link from './Link';
 import GlobalStyle from '../globalStyles';
 import FlightList from './FlightList';
+import GoogleAuth from './GoogleAuth';
+import Header from './Header';
 
 class App extends React.Component {
 
@@ -12,9 +14,7 @@ class App extends React.Component {
          <Router >
             <GlobalStyle />
             <div>
-               <Link to="/" >
-                  <h1>SpaceCal 🚀</h1>
-               </Link>
+               <Header />
                <Switch>
                   <Route path="/" exact component={FlightList} ></Route>
                   <Route path="/flightdetails/:id" component={FlightDetails}></Route>
