@@ -11,15 +11,18 @@ const StyledButton = styled.button`
    border-radius:10px;
    color: #fff;
    border: none;
-   padding: 0.5rem 2.5rem;
+   padding: 0.68rem 2.65rem;
    display:inline-flex;
    align-items:center;
    margin: 0.75rem 0;
    white-space: nowrap;
+   @media (max-width: 375px){
+      padding: 0.75rem;
+   }
    svg{
       height: 1.5em;
       width:1.5em;
-      padding: 0.5rem;
+      margin-left: 0.5rem;
    }
 
 `;
@@ -31,8 +34,10 @@ class GoogleAuth extends React.Component {
    componentDidMount() {
       window.gapi.load('client:auth2', () => {
          window.gapi.client.init({
-            client_id: '1088925987137-p6rup8skhqjag9n248i32sd3374b00dh.apps.googleusercontent.com',
-            scope: "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email"
+            client_id: "1088925987137-p6rup8skhqjag9n248i32sd3374b00dh.apps.googleusercontent.com",
+            apiKey: "AIzaSyCTfFI9vh--GipvIlD99ZX4bWXz-mGno4s",
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+            scope: "https://www.googleapis.com/auth/calendar.events"
          }).then(() => {
             this.auth = window.gapi.auth2.getAuthInstance();
             this.onAuthChange(this.auth.isSignedIn.get());
@@ -60,11 +65,11 @@ class GoogleAuth extends React.Component {
          return null;
       } else if (this.props.isSignedIn) {
          return (
-            <StyledButton onClick={this.signOut}>Sign out</StyledButton>
+            <StyledButton onClick={this.signOut}>Sign out <FaGoogle /></StyledButton>
          );
       } else {
          return (
-            <StyledButton onClick={this.signToGoogle}>Sign in with <FaGoogle /></StyledButton>
+            <StyledButton onClick={this.signToGoogle}>Sign in with<FaGoogle /></StyledButton>
          );
       }
    }

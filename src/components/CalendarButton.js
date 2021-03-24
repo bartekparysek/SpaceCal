@@ -23,17 +23,34 @@ const StyledButton = styled.button`
 class CalendarButton extends React.Component {
    addEvent = () => {
       const flightId = this.props.flightId;
-      const flight = this.props.flights.filter(flight => flight.id === flightId)
+      const flight = this.props.flights.filter(flight => flight.id === flightId);
+      const flightDate = new Date(flight[0].date_utc);
       const event = {
-         'summary': flight.name,
-         'description': flight.description,
+         'summary': flight[0].name,
+         'location': 'space',
+         'description': flight[0].description,
          'start': {
-            'dateTime':
+            'dateTime': flightDate.toISOString()
          },
+         'end': {
+            'dateTime': flightDate.toISOString(),
+            'timeZone': 'Europe/Zurich'
+         },
+         'reminders': {
+            'useDefault': false,
+            'overrides': [
+               { 'method': 'email', 'minutes': 24 * 60 },
+               { 'method': 'popup', 'minutes': 10 }
+            ]
+         },
+
       }
       const request = window.gapi.client.calendar.events.insert({
-         'calendarId': this.props.email,
+         'calendarId': 'primary',
          'resource': event
+      });
+      request.execute(() => {
+         window.open(event.htmlLink);
       });
    };
 

@@ -7,14 +7,21 @@ export const fetchUpcomingLaunches = () => async dispatch => {
 };
 
 export const fetchLaunch = (id) => async dispatch => {
-   const response = await spaceX.get(`/launches/${id}`)
+   const response = await spaceX.get(`/launches/${id}`);
 
    dispatch({ type: 'FETCH_LAUNCH', payload: response.data });
 };
 
-export const goToFlightDetails = (id) => dispatch => {
+export const fetchLaunchPad = (id) => async dispatch => {
+   const response = await spaceX.get(`/launchpads/${id}`);
 
-   dispatch({ type: 'GO_DETAILS', payload: id });
+   dispatch({ type: 'FETCH_LAUNCHPAD', payload: response.data });
+};
+
+export const fetchLaunchPads = () => async dispatch => {
+   const response = await spaceX.get(`/launchpads`);
+
+   dispatch({ type: 'FETCH_LAUNCHPADS', payload: response.data });
 };
 
 export const signIn = (userEmail) => dispatch => {

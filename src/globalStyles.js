@@ -9,8 +9,19 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       background-color: #353B48;
    }
-   h1, h2{
+   h1, h2, h3{
       padding-left: 1rem;
+      white-space: nowrap;
+      @media (max-width: 375px){
+         padding-left: 0.5rem;
+      }
+   }
+   h3{
+      margin:0;
+   }
+   p{
+      margin:0;
+      white-space: nowrap;
    }
 `
 
