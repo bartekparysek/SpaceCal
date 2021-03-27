@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { MdExpandMore } from 'react-icons/md';
-import { StyledFlight } from './NextFlight';
+import { StyledFlight, StyledWrapper, FlightBody, Expand, FlightHeader } from './NextFlight';
 import Link from './Link';
 import CalendarButton from './CalendarButton';
 
@@ -44,13 +44,20 @@ class FiveFlights extends React.Component {
             const flightDate = new Date(flight.date_utc);
             return (
                <StyledFlight key={flight.id}>
-                  <h3>{flight.name}</h3>
-                  <p>{flightDate.toDateString()}</p>
-                  {this.renderLaunchPad(flight.launchpad)}
-                  <Link to={`/flightdetails/${flight.id}`} >
-                     Flight Details
-                     <MdExpandMore />
-                  </Link>
+                  <StyledWrapper>
+                     <FlightHeader>
+                        <h3>{flight.name}</h3>
+                        <p>{flightDate.toDateString()}</p>
+                     </FlightHeader>
+                     <FlightBody>
+                        {this.renderLaunchPad(flight.launchpad)}
+                        <Expand>
+                           <Link to={`/flightdetails/${flight.id}`} >
+                              <MdExpandMore />
+                           </Link>
+                        </Expand>
+                     </FlightBody>
+                  </StyledWrapper>
                   {this.renderCalendarButton(flight.id)}
                </StyledFlight >
             );

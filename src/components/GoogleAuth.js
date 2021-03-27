@@ -14,15 +14,18 @@ const StyledButton = styled.button`
    padding: 0.68rem 2.65rem;
    display:inline-flex;
    align-items:center;
-   margin: 0.75rem 0;
    white-space: nowrap;
-   @media (max-width: 375px){
-      padding: 0.75rem;
+   @media (max-width: 420px){
+      padding: 0.68rem 0.5rem;
    }
    svg{
-      height: 1.5em;
-      width:1.5em;
-      margin-left: 0.5rem;
+      height: 1.5rem;
+      width:1.5rem;
+      margin-left: 0.4rem;
+      @media (max-width:375px){
+         height: 1.3rem;
+         width: 1.3rem;
+      }
    }
 
 `;

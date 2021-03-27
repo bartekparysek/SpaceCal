@@ -1,18 +1,18 @@
 import React from 'react';
 import GoogleAuth from './GoogleAuth';
 import Link from './Link';
-import { StyledWrapper } from './FlightDetails';
+import { Section } from './FlightDetails';
 
 
 const Header = () => {
    return (
       <React.Fragment>
-         <StyledWrapper>
+         <Section>
             <Link to="/" >
                <h1>SpaceCal 🚀</h1>
             </Link>
             <GoogleAuth />
-         </StyledWrapper>
+         </Section>
       </React.Fragment>
    );
 }

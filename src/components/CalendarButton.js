@@ -7,16 +7,24 @@ const StyledButton = styled.button`
    display:flex;
    align-items: center;
    background-color: #27292F;
-   border-radius: 0 10px 10px 0;
+   border-radius: ${props => props.flightDetails ? "10px" : "0 10px 10px 0 "} ;
    color: #fff;
    border: none;
-   padding: 0 0.5em;
+   padding: ${props => props.flightDetails ? "0.5rem" : "0 0.5rem"};
    margin:0;
-
    svg{
-      height: 3rem;
-      width: 3rem;
-      padding: 0 1rem;
+      height: 2.5rem;
+      width: 2.5rem;
+      //padding: 0 1rem;
+   }
+   @media (max-width: 450px){
+      flex-direction:column;
+      justify-content: center;
+      white-space: normal;
+      svg {
+         height: 2rem;
+         width: 2rem;
+      }
    }
 `;
 
@@ -56,12 +64,10 @@ class CalendarButton extends React.Component {
 
    render() {
       return (
-         <React.Fragment >
-            <StyledButton onClick={this.addEvent} >
-               <MdEvent />
+         <StyledButton flightDetails={this.props.flightDetails} onClick={this.addEvent} >
+            <MdEvent />
                Add to Calendar
-            </StyledButton>
-         </React.Fragment>
+         </StyledButton>
       );
    }
 }

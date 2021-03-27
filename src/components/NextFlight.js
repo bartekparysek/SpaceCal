@@ -11,33 +11,59 @@ export const StyledFlight = styled.div`
    justify-content: space-between;
    background-color: #7F8FA6;
    text-align:center;
-   //padding: 1rem;
    margin: 0.5rem;
    border-radius:10px;
-   svg{
-      height: 2em;
-      width: 2em;
-      padding: 0rem 2rem;
+   a{
+      font-size: 12px;
+      padding: 0;
    }
 
 `;
-const MiniWprapper = styled.div`
-   display:flex;
-   align-items:center;
-   justify-content: space-around;
-   p{
-      padding:0  1rem ;
-
-   }
-`;
-
 
 export const StyledWrapper = styled.div`
    //display: flex;
-   padding: 0.5rem;
-
+   padding:  0.5rem 0.5rem 0 0.5rem ;
 `;
 
+export const FlightHeader = styled.div`
+   display:flex;
+   align-items:center;
+   justify-content: space-around;
+
+   p{
+      padding-left:0.5rem ;
+      font-size: 12px;
+
+   }
+   @media (max-width: 375px){
+      justify-content:flex-start;
+      flex-direction: column;
+      align-items: flex-start;
+
+      p{
+         padding:0;
+      }
+
+   }
+`;
+export const FlightBody = styled.div`
+   font-size: 14px;
+   white-space: pre-wrap;
+   display: inline-block;
+   @media (max-width: 375px){
+      padding-top:0.2rem;
+   }
+`;
+
+export const Expand = styled.div`
+   display:flex;
+   justify-content:center;
+   svg{
+      height: 1.75em;
+      width: 1.75em;
+      padding-top: 0.1rem ;
+   }
+`;
 class NextFlight extends React.Component {
    componentDidMount() {
       this.props.fetchLaunchPads();
@@ -81,17 +107,19 @@ class NextFlight extends React.Component {
       return (
          <React.Fragment>
             <StyledWrapper>
-               <MiniWprapper>
+               <FlightHeader>
                   <h3>{flight.name}</h3>
                   <p>{flightDate.toDateString()}</p>
-               </MiniWprapper>
-               <div>
+               </FlightHeader>
+               <FlightBody>
                   {this.renderLaunchPad(flight.launchpad)}
-                  <Link to={`/flightdetails/${flight.id}`} >
-                     Flight Details
-                  <MdExpandMore />
-                  </Link>
-               </div>
+                  <Expand>
+                     <Link to={`/flightdetails/${flight.id}`} >
+                        <MdExpandMore />
+                     </Link>
+                  </Expand>
+
+               </FlightBody>
             </StyledWrapper>
             {this.renderCalendarButton(flight.id)}
          </React.Fragment>

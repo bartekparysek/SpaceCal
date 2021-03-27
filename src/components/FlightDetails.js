@@ -8,9 +8,8 @@ import CalendarButton from './CalendarButton';
 
 const StyledDetails = styled.div`
    background-color: #7F8FA6;
-   text-align:center;
    padding: 1rem;
-   margin: 0.5rem;
+   margin: 0 0.5rem;
    border-radius:10px;
 `;
 
@@ -19,13 +18,12 @@ export const StyledButton = styled.button`
    border-radius:10px;
    color: #fff;
    border: none;
-   padding: 0 1rem;
+   padding: 0.33rem 1.94rem;
    display:inline-flex;
    align-items:center;
-   margin: 0.75rem 0;
    white-space: nowrap;
    @media (max-width: 375px){
-      padding: 0.6rem;
+      padding: 0.33rem 0.5rem;
    }
    svg{
       height: 2em;
@@ -34,14 +32,49 @@ export const StyledButton = styled.button`
 
 `;
 
-export const StyledWrapper = styled.div`
+export const Section = styled.div`
    display:flex;
    justify-content:space-between;
    align-items:center;
-   padding: 0 0.5rem 0 0;
+   padding-right:0.5rem;
+   a{
+      padding:0.5rem 0;
+   }
+
+`;
+const RenderedDetails = styled.div`
+   display: flex;
+   flex-direction: column;
 
 `;
 
+const FlightHeader = styled.div`
+   display: flex;
+   padding: 1rem 0;
+
+   p ~ p{
+      margin-left: 1rem;
+   }
+`;
+
+
+const FlightDescription = styled.div`
+   width: 75vw;
+   padding: 0.5rem 0 ;
+
+   @media (max-width: 520px){
+      flex-direction: column;
+   }
+   @media (max-width: 2560px){
+      width: 65vw;
+   }
+   p{
+      line-height: 1.5;
+      margin-left: auto;
+      margin-right: auto;
+
+   }
+`;
 class FlightDetails extends React.Component {
    componentDidMount() {
       this.props.fetchLaunchPads();
@@ -66,7 +99,7 @@ class FlightDetails extends React.Component {
    renderCalendarButton(flightId) {
       if (this.props.isSignedIn === true) {
          return (
-            <CalendarButton flightId={flightId} />
+            <CalendarButton flightDetails flightId={flightId} />
          );
       } else {
          return null;
@@ -83,13 +116,19 @@ class FlightDetails extends React.Component {
       const flightDate = new Date(details[0].date_utc);
 
       return (
-         <div>
+         <RenderedDetails>
             <h3>{details[0].name}</h3>
-            <p>{details[0].details}</p>
-            <p>{flightDate.toDateString()}</p>
-            {this.renderCalendarButton(details[0].id)}
-            {this.renderLaunchPad(details[0].launchpad)}
-         </div>
+            <FlightHeader >
+               {this.renderLaunchPad(details[0].launchpad)}
+               <p>{flightDate.toDateString()}</p>
+            </FlightHeader>
+            <FlightDescription >
+               <p>{details[0].details === null ? 'Description will launch soon...' : details[0].details}</p>
+            </FlightDescription>
+            <div>
+               {this.renderCalendarButton(details[0].id)}
+            </div>
+         </RenderedDetails>
       );
 
 
@@ -99,15 +138,15 @@ class FlightDetails extends React.Component {
    render() {
       return (
          <React.Fragment>
-            <StyledWrapper>
+            <Section>
                <h2>Flight Details</h2>
-               <StyledButton>
-                  <MdChevronLeft />
-                  <Link to="/">
+               <Link to="/">
+                  <StyledButton >
+                     <MdChevronLeft />
                      Flight List
-                  </Link>
-               </StyledButton>
-            </StyledWrapper>
+                  </StyledButton>
+               </Link>
+            </Section>
             <StyledDetails>
                {this.renderDetails()}
             </StyledDetails>
