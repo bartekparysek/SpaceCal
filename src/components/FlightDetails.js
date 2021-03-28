@@ -22,7 +22,7 @@ export const StyledButton = styled.button`
    display:inline-flex;
    align-items:center;
    white-space: nowrap;
-   @media (max-width: 375px){
+   @media screen and (max-width: 375px){
       padding: 0.33rem 0.5rem;
    }
    svg{
@@ -62,10 +62,10 @@ const FlightDescription = styled.div`
    width: 75vw;
    padding: 0.5rem 0 ;
 
-   @media (max-width: 520px){
+   @media screen and (max-width: 520px){
       flex-direction: column;
    }
-   @media (max-width: 2560px){
+   @media screen and (max-width: 2560px){
       width: 65vw;
    }
    p{

@@ -1,11 +1,6 @@
 import React from 'react';
 import NextFlight from './NextFlight';
 import FiveFlights from './Flights';
-import styled from 'styled-components';
-
-const StyledFlightList = styled.div`
-
-`;
 
 const FlightList = () => {
    return (

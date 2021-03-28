@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { MdExpandMore } from 'react-icons/md';
-import { StyledFlight, StyledWrapper, FlightBody, Expand, FlightHeader } from './NextFlight';
+import { StyledFlight, StyledWrapper, FlightLocalization, Expand, FlightHeader, FlightInfo } from './NextFlight';
 import Link from './Link';
 import CalendarButton from './CalendarButton';
 
@@ -44,19 +44,21 @@ class FiveFlights extends React.Component {
             const flightDate = new Date(flight.date_utc);
             return (
                <StyledFlight key={flight.id}>
-                  <StyledWrapper>
-                     <FlightHeader>
-                        <h3>{flight.name}</h3>
-                        <p>{flightDate.toDateString()}</p>
-                     </FlightHeader>
-                     <FlightBody>
-                        {this.renderLaunchPad(flight.launchpad)}
-                        <Expand>
-                           <Link to={`/flightdetails/${flight.id}`} >
-                              <MdExpandMore />
-                           </Link>
-                        </Expand>
-                     </FlightBody>
+                  <StyledWrapper isSignedIn={this.props.isSignedIn}>
+                     <FlightInfo isSignedIn={this.props.isSignedIn}>
+                        <FlightHeader>
+                           <h3>{flight.name}</h3>
+                           <p>{flightDate.toDateString()}</p>
+                        </FlightHeader>
+                        <FlightLocalization>
+                           {this.renderLaunchPad(flight.launchpad)}
+                        </FlightLocalization>
+                     </FlightInfo>
+                     <Expand>
+                        <Link to={`/flightdetails/${flight.id}`} >
+                           <MdExpandMore />
+                        </Link>
+                     </Expand>
                   </StyledWrapper>
                   {this.renderCalendarButton(flight.id)}
                </StyledFlight >

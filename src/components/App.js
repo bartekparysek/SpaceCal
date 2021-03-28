@@ -8,13 +8,15 @@ import FlightList from './FlightList';
 import Header from './Header';
 
 const StyledApp = styled.div`
-   width: 70vw;
    margin: auto;
-   @media (max-width: 425px){
-      width: 70%;
+   @media screen and (min-width: 350px){
+      width: 96%;
    }
-   @media (max-width:768px ){
+   @media screen and (min-width:800px ){
       width: 90%;
+   }
+   @media screen and (min-width: 2560px){
+      width: 85%;
    }
 `;
 const StyledSection = styled.div`

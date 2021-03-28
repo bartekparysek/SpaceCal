@@ -1,14 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-
    *{
       box-sizing: border-box;
    }
 
    body {
       color: #fff;
-      font-family: 'D-DIN-Bold', sans-serif;
+      font-family: 'News Cycle', sans-serif;
       background-color: #353B48;
       margin:0;
    }

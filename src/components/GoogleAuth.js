@@ -15,16 +15,17 @@ const StyledButton = styled.button`
    display:inline-flex;
    align-items:center;
    white-space: nowrap;
-   @media (max-width: 420px){
-      padding: 0.68rem 0.5rem;
+   @media screen and (max-width: 420px){
+      padding: 0.68rem 0.4rem;
    }
    svg{
       height: 1.5rem;
       width:1.5rem;
       margin-left: 0.4rem;
-      @media (max-width:375px){
+      @media screen and (max-width:375px){
          height: 1.3rem;
          width: 1.3rem;
+         margin-left: 0.2rem;
       }
    }
 
