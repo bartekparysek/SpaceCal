@@ -57,7 +57,7 @@ class CalendarButton extends React.Component {
          'calendarId': 'primary',
          'resource': event
       });
-      request.execute(() => {
+      request.execute((event) => {
          window.open(event.htmlLink);
       });
    };

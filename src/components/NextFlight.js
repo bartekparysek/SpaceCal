@@ -109,8 +109,8 @@ export const Expand = styled.div`
    display:flex;
    justify-content:center;
    svg{
-      height: 1.75em;
-      width: 1.75em;
+      height: 3em;
+      width: 3em;
       padding-top: 0.1rem ;
    }
 `;
@@ -133,19 +133,18 @@ class NextFlight extends React.Component {
    };
 
    renderLaunchPad(flightLaunchPad) {
-      const launchpads = this.props.launchpads;
-      if (!launchpads) {
+      const { launchpads } = this.props;
+      const launchpad = launchpads.filter(pad => pad.id === flightLaunchPad);
+      if (!launchpad[0] || launchpad[0] === undefined) {
          return null;
       } else {
-         const launchpad = launchpads.filter(pad => pad.id === flightLaunchPad);
          return (
             <p>{`${launchpad[0].locality}, ${launchpad[0].region}`}</p>
-
          );
 
       }
 
-   }
+   };
 
    renderFlight() {
       const flights = this.props.flights;

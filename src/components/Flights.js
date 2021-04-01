@@ -19,15 +19,17 @@ class FiveFlights extends React.Component {
 
 
    renderLaunchPad(flightLaunchPad) {
-      const launchpads = this.props.launchpads;
-      if (!launchpads) {
-         return null;
+      const { launchpads } = this.props;
+      const launchpad = launchpads.filter(pad => pad.id === flightLaunchPad);
+      if (!launchpad[0] || launchpad[0] === undefined) {
+         return null
       } else {
-         const launchpad = launchpads.filter(pad => pad.id === flightLaunchPad);
          return (
             <p>{`${launchpad[0].locality}, ${launchpad[0].region}`}</p>
          );
+
       }
+
    };
    renderInfo() {
       if (!this.props.flights) {

@@ -14,17 +14,19 @@ const StyledDetails = styled.div`
 `;
 
 export const StyledButton = styled.button`
+   font-size: 14px;
    background-color:#27292F;
    border-radius:10px;
    color: #fff;
    border: none;
-   padding: 0.33rem 1.94rem;
+   padding: 0.5rem 1.94rem;
    display:inline-flex;
    align-items:center;
    white-space: nowrap;
    @media screen and (max-width: 375px){
       padding: 0.33rem 0.5rem;
    }
+
    svg{
       height: 2em;
       width: 2em;
