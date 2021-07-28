@@ -165,7 +165,7 @@ class NextFlight extends React.Component {
                      {this.renderLaunchPad(flight.launchpad)}
                   </FlightLocalization>
                </FlightInfo>
-               <Expand>
+               <Expand data-testid="details-link" >
                   <Link to={`/flightdetails/${flight.id}`} >
                      <MdExpandMore />
                   </Link>
