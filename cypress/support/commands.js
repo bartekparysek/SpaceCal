@@ -23,3 +23,42 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import '@testing-library/cypress/add-commands';
+
+
+Cypress.Commands.add('loginByGoogleApi', () => {
+
+  cy.log('Logging to Google')
+  cy.request({
+    method: 'POST',
+    url: 'https://www.googleapis.com/oauth2/v4/token',
+    body: {
+      grant_type: 'refresh_token',
+      client_id: Cypress.env('googleClientId'),
+      client_secret: Cypress.env('googleClientSecret'),
+      refresh_token: Cypress.env('googleRefreshToken'),
+    },
+  }).then(({ body }) => {
+    const { access_token, id_token } = body
+    cy.request({
+      method: 'GET',
+      url: 'https://www.googleapis.com/oauth2/v2/userinfo',
+      headers: { Authorization: `Bearer ${access_token}` },
+    }).then(({ body }) => {
+      cy.log(body)
+      const userItem = {
+        token: id_token,
+        user: {
+          googleId: body.id,
+          email: body.email,
+        },
+      }
+      // window.localStorage.setItem('googleCypress', JSON.stringify(userItem));
+
+      cy
+        .window()
+        .its('store')
+        .invoke('dispatch', { type: 'SIGN_IN', payload: userItem.user.email })
+    })
+  })
+})

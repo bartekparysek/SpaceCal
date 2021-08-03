@@ -18,3 +18,7 @@ ReactDOM.render(
       <App />
    </Provider>,
    document.querySelector('#root'));
+
+if (window.Cypress) {
+   window.store = store;
+}
