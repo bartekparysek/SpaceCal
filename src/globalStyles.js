@@ -6,9 +6,8 @@ const GlobalStyle = createGlobalStyle`
    }
 
    body {
-      color: #fff;
+      color: #000000;
       font-family: 'News Cycle', sans-serif;
-      background-color: #353B48;
       margin:0;
    }
    h1, h2{
