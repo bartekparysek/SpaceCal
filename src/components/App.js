@@ -29,26 +29,22 @@ const StyledSection = styled.div`
 `;
 
 
-class App extends React.Component {
+const App = () => {
+   return (
+      <Router >
+         <GlobalStyle />
+         <StyledApp>
+            <StyledSection>
+               <Header />
+               <Switch>
+                  <Route path="/" exact component={FlightList}></Route>
+                  <Route path="/flightdetails/:id" component={FlightDetails}></Route>
+               </Switch>
+            </StyledSection>
 
-   render() {
-      return (
-         <Router >
-            <GlobalStyle />
-            <StyledApp>
-               <StyledSection>
-                  <Header />
-                  <Switch>
-                     <Route path="/" exact component={FlightList}></Route>
-                     <Route path="/flightdetails/:id" component={FlightDetails}></Route>
-                  </Switch>
-               </StyledSection>
-
-            </StyledApp>
-         </Router>
-      )
-   }
-
+         </StyledApp>
+      </Router>
+   )
 }
 
 export default App;

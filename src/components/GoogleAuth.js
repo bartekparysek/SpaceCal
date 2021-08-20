@@ -7,20 +7,24 @@ import { signIn, signOut } from '../actions';
 
 const StyledButton = styled.button`
 
-   background-color:#27292F;
-   border-radius:10px;
+   background-color: rgba(255,255,255,0.5);
+   border-radius:8px;
    color: #fff;
    border: none;
-   padding: 0.68rem 2.65rem;
+   padding: 0.5rem 2.5rem;
+   font-size: 16px;
    display:inline-flex;
    align-items:center;
    white-space: nowrap;
+   &:hover{
+      background-color: rgba(255,255,255,0.7);
+   }
    @media screen and (max-width: 420px){
       padding: 0.68rem 0.4rem;
    }
    svg{
-      height: 1.5rem;
-      width:1.5rem;
+      height: 2rem;
+      width:2rem;
       margin-left: 0.4rem;
       @media screen and (max-width:375px){
          height: 1.3rem;
@@ -38,8 +42,8 @@ class GoogleAuth extends React.Component {
    componentDidMount() {
       window.gapi.load('client:auth2', () => {
          window.gapi.client.init({
-            client_id: "1088925987137-p6rup8skhqjag9n248i32sd3374b00dh.apps.googleusercontent.com",
-            apiKey: "AIzaSyCTfFI9vh--GipvIlD99ZX4bWXz-mGno4s",
+            client_id: process.env.REACT_APP_GOOGLE_CLIENTID,
+            apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
             discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
             scope: "https://www.googleapis.com/auth/calendar.events"
          }).then(() => {
