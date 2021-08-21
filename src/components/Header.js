@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleAuth from './GoogleAuth';
 import Link from './Link';
-import { Section } from './FlightDetails';
+import { Section } from './Details/DetailsView';
 
 
 const Header = () => {

@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { MdChevronLeft } from 'react-icons/md';
-import { fetchUpcomingLaunches, fetchLaunchPads } from '../actions';
-import Link from './Link';
-import CalendarButton from './CalendarButton';
+import { fetchUpcomingLaunches, fetchLaunchPads } from '../../actions';
+import Link from '../Link';
+import CalendarButton from '../CalendarButton';
 
 const StyledDetails = styled.div`
    background-color: #7F8FA6;
@@ -77,7 +77,7 @@ const FlightDescription = styled.div`
 
    }
 `;
-class FlightDetails extends React.Component {
+class DetailsView extends React.Component {
    componentDidMount() {
       this.props.fetchLaunchPads();
       this.props.fetchUpcomingLaunches();
@@ -161,4 +161,4 @@ const mapStateToProps = (state) => {
    return { flights: state.flights[0], isSignedIn: state.auth.isSignedIn, launchpads: Object.values(state.launchpads) }
 }
 
-export default connect(mapStateToProps, { fetchUpcomingLaunches, fetchLaunchPads })(FlightDetails);
+export default connect(mapStateToProps, { fetchUpcomingLaunches, fetchLaunchPads })(DetailsView);

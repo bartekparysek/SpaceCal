@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
-import FlightDetails from './FlightDetails';
+import DetailsView from './Details/DetailsView';
 import GlobalStyle from '../globalStyles';
-import FlightList from './FlightList';
+import HomeView from './Home/HomeView';
 import image from '../assets/49955609618_a2e5f29a91_3k.jpeg';
 
 import Header from './Header';
@@ -37,8 +37,8 @@ const App = () => {
             <StyledSection>
                <Header />
                <Switch>
-                  <Route path="/" exact component={FlightList}></Route>
-                  <Route path="/flightdetails/:id" component={FlightDetails}></Route>
+                  <Route path="/" exact component={HomeView}></Route>
+                  <Route path="/flightdetails/:id" component={DetailsView}></Route>
                </Switch>
             </StyledSection>
 
