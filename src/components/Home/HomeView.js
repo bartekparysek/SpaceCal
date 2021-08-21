@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import Container from '../Container'
 import spaceX from '../../apis/spaceX';
 
+const LeftSide = styled.div`
+   display: flex;
+   flex-direction: column;
+   padding: 0 1rem;
+`;
+const RightSide = styled.div`
+   padding: 0 1rem;
+`;
+const Home = styled.div`
+   display:flex;
+   justify-content: space-between;
+`;
 
 const HomeView = () => {
    const [flights, setFlights] = useState(null);
@@ -22,13 +35,16 @@ const HomeView = () => {
 
 
    return (
-      <div>
-         <Container title={"Next Launch"} >
+      <Home>
+         <LeftSide>
+            <Container title={"Next launch"}></Container>
+            <Container title={"August 2021"}></Container>
+         </LeftSide>
 
-         </Container>
-         <h2>Upcoming launches</h2>
-
-      </div>
+         <RightSide>
+            <Container title={"Upcoming launches"}></Container>
+         </RightSide>
+      </Home>
 
    );
 }
