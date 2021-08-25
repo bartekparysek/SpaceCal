@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   color: #000;
   width: 30vw;
-  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
@@ -21,21 +20,21 @@ const Wrapper = styled.div`
     border-radius: 8px 8px 0 0;
     text-align: center;
   }
-  div{
-    background-color: rgba(255,255,255,1);
-    padding: 1rem;
-    border-radius:  0 0 8px 8px;
-  }
 `;
+const ChildrenWrapper = styled.div`
+  background-color: rgba(255,255,255,1);
+  padding: 2rem;
+  border-radius:  0 0 8px 8px;
+`
 
 const Container = ({ title, children }) => {
   return (
     <>
       <Wrapper>
         <h1><span>{title}</span></h1>
-        <div>
+        <ChildrenWrapper>
           {children}
-        </div>
+        </ChildrenWrapper>
       </Wrapper>
     </>
   )

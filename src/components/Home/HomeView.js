@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Container from '../Container'
 import spaceX from '../../apis/spaceX';
+import FlightCard from '../FlightCard';
 
 const LeftSide = styled.div`
    display: flex;
@@ -34,10 +35,19 @@ const HomeView = () => {
    }, [])
 
 
+   const launchpad = (launchpadId) => {
+      if (launchpads) {
+         const launchpadData = launchpads.filter(pad => pad.id === launchpadId);
+         return launchpadData[0];
+      }
+   }
+
    return (
       <Home>
          <LeftSide>
-            <Container title={"Next launch"}></Container>
+            <Container title={"Next launch"}>
+               {flights && <FlightCard flight={flights[0]} launchpad={launchpad(flights[0].launchpad)} />}
+            </Container>
             <Container title={"August 2021"}></Container>
          </LeftSide>
 
