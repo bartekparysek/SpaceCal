@@ -133,9 +133,6 @@ const FlightCard = ({ flight, launchpad }) => {
             </FlipButton>
 
           </RightSide>
-
-
-
         </CardB>
       )}
 
