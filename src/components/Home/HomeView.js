@@ -5,12 +5,12 @@ import spaceX from "../../apis/spaceX";
 import FlightCard from "../FlightCard";
 import Calendar from "../Calendar/Calendar";
 
-const LeftSide = styled.div`
+export const LeftSide = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 1rem;
 `;
-const RightSide = styled.div`
+export const RightSide = styled.div`
 	padding: 0 1rem;
 `;
 const Home = styled.div`

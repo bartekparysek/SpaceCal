@@ -86,7 +86,6 @@ const LeftSide = styled.div`
   flex-direction: column;
 `
 
-
 const FlightCard = ({ flight, launchpad }) => {
   // hold state if its cardA or cardB side
   const [side, setSide] = useState('A');

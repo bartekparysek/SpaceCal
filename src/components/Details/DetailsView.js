@@ -1,17 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { MdChevronLeft } from "react-icons/md";
-import { fetchUpcomingLaunches, fetchLaunchPads } from "../../actions";
+
 import Link from "../Link";
 import CalendarButton from "../CalendarButton";
-
-const StyledDetails = styled.div`
-	background-color: #7f8fa6;
-	padding: 1rem;
-	margin: 0 0.5rem;
-	border-radius: 10px;
-`;
+import Container from '../Container';
+import spaceX from "../../apis/spaceX";
+import { LeftSide, RightSide } from "../Home/HomeView";
 
 export const StyledButton = styled.button`
 	font-size: 14px;
@@ -26,11 +20,6 @@ export const StyledButton = styled.button`
 	@media screen and (max-width: 375px) {
 		padding: 0.33rem 0.5rem;
 	}
-
-	svg {
-		height: 2em;
-		width: 2em;
-	}
 `;
 
 export const Section = styled.div`
@@ -42,117 +31,72 @@ export const Section = styled.div`
 		padding: 0.5rem 0;
 	}
 `;
-const RenderedDetails = styled.div`
+const Details = styled.div`
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
+
+`;
+const Logo = styled.img`
+	border-radius: 50%;
+	width: 8rem;
+	height: 8rem;
 `;
 
-const FlightHeader = styled.div`
-	display: flex;
-	padding: 1rem 0;
+const DetailsView = () => {
+	const [flight, setFlight] = useState(null);
+	const [launchpad, setLaunchPad] = useState(null);
+	const flightId = window.location.pathname.substring(15);
 
-	p ~ p {
-		margin-left: 1rem;
-	}
-`;
 
-const FlightDescription = styled.div`
-	width: 75vw;
-	padding: 0.5rem 0;
-
-	@media screen and (max-width: 520px) {
-		flex-direction: column;
-	}
-	@media screen and (max-width: 2560px) {
-		width: 65vw;
-	}
-	p {
-		line-height: 1.5;
-		margin-left: auto;
-		margin-right: auto;
-	}
-`;
-class DetailsView extends React.Component {
-	componentDidMount() {
-		this.props.fetchLaunchPads();
-		this.props.fetchUpcomingLaunches();
-	}
-
-	renderLaunchPad(flightLaunchPad) {
-		const launchpads = this.props.launchpads;
-		if (!launchpads) {
-			return null;
-		} else {
-			const launchpad = launchpads.filter(
-				(pad) => pad.id === flightLaunchPad
-			);
-			return <p>{`${launchpad[0].locality}, ${launchpad[0].region}`}</p>;
+	useEffect(() => {
+		const fetchFlight = async (id) => {
+			const response = await spaceX.get(`/launches/${id}`);
+			setFlight(response.data);
 		}
-	}
+		fetchFlight(flightId);
+	}, [flightId]);
 
-	renderCalendarButton(flightId) {
-		if (this.props.isSignedIn === true) {
-			return <CalendarButton flightDetails flightId={flightId} />;
-		} else {
-			return null;
+	useEffect(() => {
+		const fetchLaunchPad = async (id) => {
+			const response = await spaceX.get(`/launchpads/${id}`)
+			setLaunchPad(response.data);
 		}
-	}
-
-	renderDetails() {
-		const flights = this.props.flights;
-		if (!flights) {
-			return <div>Loading...</div>;
+		if (flight) {
+			fetchLaunchPad(flight.launchpad)
 		}
-		const { id } = this.props.match.params;
-		const details = flights.filter((launch) => launch.id === id);
-		const flightDate = new Date(details[0].date_utc);
+	}, [flight])
 
-		return (
-			<RenderedDetails>
-				<h3>{details[0].name}</h3>
-				<FlightHeader>
-					{this.renderLaunchPad(details[0].launchpad)}
-					<p>{flightDate.toDateString()}</p>
-				</FlightHeader>
-				<FlightDescription>
-					<p>
-						{details[0].details === null
-							? "Description will launch soon..."
-							: details[0].details}
-					</p>
-				</FlightDescription>
-				<div>{this.renderCalendarButton(details[0].id)}</div>
-			</RenderedDetails>
-		);
-	}
+	// renderCalendarButton(flightId) {
+	// 	if (this.props.isSignedIn === true) {
+	// 		return <CalendarButton flightDetails flightId={flightId} />;
+	// 	} else {
+	// 		return null;
+	// 	}
+	// }
 
-	render() {
-		return (
-			<React.Fragment>
-				<Section>
-					<h2>Flight Details</h2>
-					<Link to="/">
-						<StyledButton>
-							<MdChevronLeft />
-							Flight List
-						</StyledButton>
-					</Link>
-				</Section>
-				<StyledDetails>{this.renderDetails()}</StyledDetails>
-			</React.Fragment>
-		);
-	}
+	return (
+		<Details>
+			<LeftSide>
+				{flight && launchpad ? (
+					<Container title={flight.name}>
+						<Logo src={launchpad.images.large} alt={launchpad.full_name}></Logo>
+						<p>{new Date(flight.date_utc).toDateString()}</p>
+						<p>{`${launchpad.locality}, ${launchpad.region}`}</p>
+						<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
+
+					</Container>
+				) : null}
+			</LeftSide>
+
+			<RightSide>
+
+				<Container title={"August 2021"}>
+
+				</Container>
+
+			</RightSide>
+		</Details>
+	);
 }
 
-const mapStateToProps = (state) => {
-	return {
-		flights: state.flights[0],
-		isSignedIn: state.auth.isSignedIn,
-		launchpads: Object.values(state.launchpads),
-	};
-};
-
-export default connect(mapStateToProps, {
-	fetchUpcomingLaunches,
-	fetchLaunchPads,
-})(DetailsView);
+export default DetailsView;
