@@ -9,18 +9,23 @@ import { LeftSide, RightSide } from '../Home/HomeView';
 import GoogleMap from './GoogleMap';
 
 export const StyledButton = styled.button`
-	font-size: 14px;
-	background-color: #27292f;
-	border-radius: 10px;
-	color: #fff;
+	font-size: 16px;
+	font-family:inherit;
+	background-color: #ece7e7ab;
+	border-radius: 8px;
+	color: #000;
 	border: none;
-	padding: 0.5rem 1.94rem;
-	display: inline-flex;
-	align-items: center;
+	width: 10rem;
+	padding: 0.5rem 2rem;
+	display: inline;
+	text-align: center;
 	white-space: nowrap;
 	@media screen and (max-width: 375px) {
 		padding: 0.33rem 0.5rem;
 	}
+	&:hover{
+      background-color: #ece7e7;
+   }
 `;
 
 export const Section = styled.div`
@@ -35,7 +40,6 @@ export const Section = styled.div`
 const Details = styled.div`
 	display: flex;
 	justify-content: space-between;
-
 `;
 const Logo = styled.img`
 	border-radius: 50%;
@@ -44,16 +48,21 @@ const Logo = styled.img`
 `;
 const Header = styled.div`
 	display: flex;
-	padding: 1rem 0.5rem;
+	padding: 1rem 0;
 	align-items: center;
 	div{
 		padding: 0 2rem;
 	}
 `;
 const Description = styled.div`
-	padding: 0.5rem;
+	padding: 0.5rem 0;
 	text-align: justify;
 	font-size:0.8em;
+`;
+const ButtonsWrapper = styled.div`
+	padding:1rem 0;
+	display: flex;
+	justify-content: space-between;
 `;
 
 const DetailsView = () => {
@@ -105,6 +114,15 @@ const DetailsView = () => {
 						</Description>
 						{/* Add 2 buttons and little map based on lon and lat*/}
 						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
+						<ButtonsWrapper>
+							<StyledButton>Add to Calendar</StyledButton>
+							<Link to="/">
+								<StyledButton>
+									Flight list
+								</StyledButton>
+							</Link>
+
+						</ButtonsWrapper>
 					</Container>
 				) : null}
 			</LeftSide>
