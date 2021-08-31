@@ -5,10 +5,11 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
    }
 
-   body {
+   html,body {
       color: #000000;
       font-family: 'News Cycle', sans-serif;
       margin:0;
+      height: 100%;
    }
    h1, h2{
       padding-left: 1rem;
