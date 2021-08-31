@@ -7,25 +7,33 @@ import Container from '../Container';
 import spaceX from '../../apis/spaceX';
 import { LeftSide, RightSide } from '../Home/HomeView';
 import GoogleMap from './GoogleMap';
+import { MdList } from 'react-icons/md'
 
 export const StyledButton = styled.button`
+	align-items: center;
 	font-size: 16px;
 	font-family:inherit;
 	background-color: #ece7e7ab;
 	border-radius: 8px;
 	color: #000;
 	border: none;
-	width: 10rem;
-	padding: 0.5rem 2rem;
-	display: inline;
-	text-align: center;
+	width: 11rem;
+	padding: 0.5rem 1rem;
+	justify-content: center;
+	display: inline-flex;
 	white-space: nowrap;
+	svg{
+		height: 2rem;
+		width: 2rem;
+		margin-right: 2px;
+		}
 	@media screen and (max-width: 375px) {
 		padding: 0.33rem 0.5rem;
 	}
 	&:hover{
       background-color: #ece7e7;
    }
+
 `;
 
 export const Section = styled.div`
@@ -115,9 +123,12 @@ const DetailsView = () => {
 						{/* Add 2 buttons and little map based on lon and lat*/}
 						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
 						<ButtonsWrapper>
-							<StyledButton>Add to Calendar</StyledButton>
+							{/* Add condition to show this button only if logged in */}
+							<CalendarButton flight={flight} launchpad={launchpad} />
+
 							<Link to="/">
 								<StyledButton>
+									<MdList />
 									Flight list
 								</StyledButton>
 							</Link>
