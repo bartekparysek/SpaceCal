@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-import Link from "../Link";
-import CalendarButton from "../CalendarButton";
+import Link from '../Link';
+import CalendarButton from '../CalendarButton'
 import Container from '../Container';
-import spaceX from "../../apis/spaceX";
-import { LeftSide, RightSide } from "../Home/HomeView";
+import spaceX from '../../apis/spaceX';
+import { LeftSide, RightSide } from '../Home/HomeView';
+import GoogleMap from './GoogleMap';
 
 export const StyledButton = styled.button`
 	font-size: 14px;
@@ -40,6 +41,19 @@ const Logo = styled.img`
 	border-radius: 50%;
 	width: 8rem;
 	height: 8rem;
+`;
+const Header = styled.div`
+	display: flex;
+	padding: 1rem 0.5rem;
+	align-items: center;
+	div{
+		padding: 0 2rem;
+	}
+`;
+const Description = styled.div`
+	padding: 0.5rem;
+	text-align: justify;
+	font-size:0.8em;
 `;
 
 const DetailsView = () => {
@@ -79,11 +93,18 @@ const DetailsView = () => {
 			<LeftSide>
 				{flight && launchpad ? (
 					<Container title={flight.name}>
-						<Logo src={launchpad.images.large} alt={launchpad.full_name}></Logo>
-						<p>{new Date(flight.date_utc).toDateString()}</p>
-						<p>{`${launchpad.locality}, ${launchpad.region}`}</p>
-						<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
-
+						<Header>
+							<Logo src={launchpad.images.large} alt={launchpad.full_name}></Logo>
+							<div>
+								<h1>{new Date(flight.date_utc).toDateString()}</h1>
+								<h1>{`${launchpad.locality}, ${launchpad.region}`}</h1>
+							</div>
+						</Header>
+						<Description>
+							<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
+						</Description>
+						{/* Add 2 buttons and little map based on lon and lat*/}
+						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
 					</Container>
 				) : null}
 			</LeftSide>
