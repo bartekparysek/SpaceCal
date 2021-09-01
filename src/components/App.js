@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import DetailsView from "./Details/DetailsView";
@@ -8,6 +8,7 @@ import image from "../assets/49955609618_a2e5f29a91_3k.jpeg";
 
 import Header from "./Header";
 import Footer from '../components/Footer';
+import GoogleAuth from './GoogleAuth';
 
 const StyledApp = styled.div`
 	display: flex;
@@ -34,12 +35,16 @@ const StyledSection = styled.div`
 `;
 
 const App = () => {
+	const [user, setUser] = useState(null);
+
 	return (
 		<Router>
 			<GlobalStyle />
 			<StyledApp>
 				<StyledSection>
-					<Header />
+					<Header>
+						<GoogleAuth user={user} setUser={setUser} />
+					</Header>
 					<Switch>
 						<Route path="/" exact component={HomeView}></Route>
 						<Route

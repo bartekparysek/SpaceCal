@@ -1,40 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import Link from '../Link';
 import CalendarButton from '../CalendarButton'
 import Container from '../Container';
 import spaceX from '../../apis/spaceX';
 import { LeftSide, RightSide } from '../Home/HomeView';
 import GoogleMap from './GoogleMap';
-import { MdList } from 'react-icons/md'
-
-export const StyledButton = styled.button`
-	align-items: center;
-	font-size: 16px;
-	font-family:inherit;
-	background-color: #ece7e7ab;
-	border-radius: 8px;
-	color: #000;
-	border: none;
-	width: 11rem;
-	padding: 0.5rem 1rem;
-	justify-content: center;
-	display: inline-flex;
-	white-space: nowrap;
-	svg{
-		height: 2rem;
-		width: 2rem;
-		margin-right: 2px;
-		}
-	@media screen and (max-width: 375px) {
-		padding: 0.33rem 0.5rem;
-	}
-	&:hover{
-      background-color: #ece7e7;
-   }
-
-`;
+import BasicInfo from './BasicInfo';
+import Buttons from './Buttons';
 
 export const Section = styled.div`
 	display: flex;
@@ -49,31 +21,14 @@ const Details = styled.div`
 	display: flex;
 	justify-content: space-between;
 `;
-const Logo = styled.img`
-	border-radius: 50%;
-	width: 8rem;
-	height: 8rem;
-`;
-const Header = styled.div`
-	display: flex;
-	padding: 1rem 0;
-	align-items: center;
-	div{
-		padding: 0 2rem;
-	}
-`;
+
 const Description = styled.div`
 	padding: 0.5rem 0;
 	text-align: justify;
 	font-size:0.8em;
 `;
-const ButtonsWrapper = styled.div`
-	padding:1rem 0;
-	display: flex;
-	justify-content: space-between;
-`;
 
-const DetailsView = () => {
+const DetailsView = ({ children }) => {
 	const [flight, setFlight] = useState(null);
 	const [launchpad, setLaunchPad] = useState(null);
 	const flightId = window.location.pathname.substring(15);
@@ -97,43 +52,20 @@ const DetailsView = () => {
 		}
 	}, [flight])
 
-	// renderCalendarButton(flightId) {
-	// 	if (this.props.isSignedIn === true) {
-	// 		return <CalendarButton flightDetails flightId={flightId} />;
-	// 	} else {
-	// 		return null;
-	// 	}
-	// }
-
 	return (
 		<Details>
 			<LeftSide>
 				{flight && launchpad ? (
 					<Container title={flight.name}>
-						<Header>
-							<Logo src={launchpad.images.large} alt={launchpad.full_name}></Logo>
-							<div>
-								<h1>{new Date(flight.date_utc).toDateString()}</h1>
-								<h1>{`${launchpad.locality}, ${launchpad.region}`}</h1>
-							</div>
-						</Header>
+						<BasicInfo flight={flight} launchpad={launchpad} />
 						<Description>
 							<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
 						</Description>
-						{/* Add 2 buttons and little map based on lon and lat*/}
 						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
-						<ButtonsWrapper>
+						<Buttons>
 							{/* Add condition to show this button only if logged in */}
 							<CalendarButton flight={flight} launchpad={launchpad} />
-
-							<Link to="/">
-								<StyledButton>
-									<MdList />
-									Flight list
-								</StyledButton>
-							</Link>
-
-						</ButtonsWrapper>
+						</Buttons>
 					</Container>
 				) : null}
 			</LeftSide>

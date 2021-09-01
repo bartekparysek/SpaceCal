@@ -1,32 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdEvent } from 'react-icons/md';
-import { StyledButton } from './Details/DetailsView'
+import { StyledButton } from './Details/Buttons'
 
-// const StyledButton = styled.button`
-//    display:flex;
-//    align-items: center;
-//    background-color: #27292F;
-//    border-radius: 8px;
-//    color: #fff;
-//    border: none;
-//    padding: ${props => props.flightDetails ? "0.5rem" : "0 0.5rem"};
-//    margin:0;
-//    svg{
-//       height: 2rem;
-//       width: 2rem;
-//       //padding: 0 1rem;
-//    }
-//    @media (max-width: 450px){
-//       flex-direction:column;
-//       justify-content: center;
-//       white-space: normal;
-//       svg {
-//          height: 2rem;
-//          width: 2rem;
-//       }
-//    }
-// `;
 
 const CalendarButton = ({ flight, launchpad }) => {
 

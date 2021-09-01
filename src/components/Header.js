@@ -1,10 +1,9 @@
 import React from 'react';
-import GoogleAuth from './GoogleAuth';
 import Link from './Link';
 import { Section } from './Details/DetailsView';
 
 
-const Header = () => {
+const Header = ({ children }) => {
    return (
       <>
          <Section>
@@ -12,7 +11,7 @@ const Header = () => {
                <h1>SpaceCal </h1>
             </Link>
 
-            <GoogleAuth />
+            {children}
          </Section>
          <h2>Find your next flight...</h2>
       </>
