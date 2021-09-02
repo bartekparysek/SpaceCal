@@ -1,9 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FaGoogle } from 'react-icons/fa'
-import { signIn, signOut } from '../actions';
-
 
 const StyledButton = styled.button`
 
@@ -35,11 +32,9 @@ const StyledButton = styled.button`
 
 `;
 
-
-
-
-class GoogleAuth extends React.Component {
-   componentDidMount() {
+const GoogleAuth = ({ user, setUser }) => {
+   const auth = useRef(null);
+   useEffect(() => {
       window.gapi.load('client:auth2', () => {
          window.gapi.client.init({
             client_id: process.env.REACT_APP_GOOGLE_CLIENTID,
@@ -47,48 +42,56 @@ class GoogleAuth extends React.Component {
             discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
             scope: "https://www.googleapis.com/auth/calendar.events"
          }).then(() => {
-            this.auth = window.gapi.auth2.getAuthInstance();
-            this.onAuthChange(this.auth.isSignedIn.get());
-            this.auth.isSignedIn.listen(this.onAuthChange);
+            auth.current = window.gapi.auth2.getAuthInstance();
+            setUser((prev) => ({
+               ...prev,
+               isSignedIn: auth.current.isSignedIn.get(),
+            }));
+            auth.current.isSignedIn.listen(onAuthChange)
          });
       });
-   }
-   onAuthChange = (isSignedIn) => {
-      if (isSignedIn) {
-         this.props.signIn(this.auth.currentUser.get().getBasicProfile().getEmail());
-      } else {
-         this.props.signOut();
+
+      const onAuthChange = (isSignedIn) => {
+         if (isSignedIn) {
+            setUser((prev) => ({
+               ...prev,
+               email: auth.current.currentUser.get().getBasicProfile().getEmail(),
+            }))
+         } else {
+            setUser((prev) => ({
+               ...prev,
+               isSignedIn: false,
+               email: null,
+            }))
+         };
       }
-   };
 
-   signToGoogle = () => {
-      this.auth.signIn();
-   };
-   signOut = () => {
-      this.auth.signOut();
-   };
+   }, [setUser])
 
-   renderAuthenticationButton() {
-      if (this.props.isSignedIn === null) {
-         return null;
-      } else if (this.props.isSignedIn) {
-         return (
-            <StyledButton onClick={this.signOut}>Sign out <FaGoogle /></StyledButton>
-         );
-      } else {
-         return (
-            <StyledButton onClick={this.signToGoogle}>Sign in with<FaGoogle /></StyledButton>
-         );
-      }
+   const signIn = () => {
+      auth.current.signIn()
+      setUser((prev) => ({
+         ...prev,
+         isSignedIn: true,
+      }))
    }
+   const signOut = () => {
+      auth.current.signOut();
+      setUser((prev) => ({
+         ...prev,
+         isSignedIn: false,
+         email: null,
+      }))
 
-   render() {
-      return (<div>{this.renderAuthenticationButton()}</div>);
-   };
+   }
+   return (
+      <div>{
+         user.isSignedIn ? (
+            <StyledButton onClick={() => signOut()}>Sign out <FaGoogle /></StyledButton>
+         ) : (
+            <StyledButton onClick={() => signIn()}>Sign in with<FaGoogle /></StyledButton>
+         )}
+      </div>);
 }
 
-const mapStateToProps = (state) => {
-   return { isSignedIn: state.auth.isSignedIn }
-}
-
-export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
+export default GoogleAuth;

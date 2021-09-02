@@ -9,6 +9,8 @@ import image from "../assets/49955609618_a2e5f29a91_3k.jpeg";
 import Header from "./Header";
 import Footer from '../components/Footer';
 import GoogleAuth from './GoogleAuth';
+import Buttons from "./Details/Buttons";
+import CalendarButton from "./CalendarButton";
 
 const StyledApp = styled.div`
 	display: flex;
@@ -35,7 +37,10 @@ const StyledSection = styled.div`
 `;
 
 const App = () => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState({
+		isSignedIn: false,
+		email: null,
+	});
 
 	return (
 		<Router>
@@ -49,7 +54,13 @@ const App = () => {
 						<Route path="/" exact component={HomeView}></Route>
 						<Route
 							path="/flightdetails/:id"
-							component={DetailsView}
+							render={() => (
+								<DetailsView>
+									<Buttons>
+										<CalendarButton user={user} />
+									</Buttons>
+								</DetailsView>
+							)}
 						></Route>
 					</Switch>
 				</StyledSection>

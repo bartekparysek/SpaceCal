@@ -1,10 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MdEvent } from 'react-icons/md';
 import { StyledButton } from './Details/Buttons'
 
 
-const CalendarButton = ({ flight, launchpad }) => {
+const CalendarButton = ({ flight, launchpad, user }) => {
 
    const addEvent = () => {
 
