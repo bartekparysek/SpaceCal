@@ -28,7 +28,8 @@ export function takeMonth(start = new Date()) {
 
     const range = month;
     month = [];
-    date = addDays(lastDayOfRange(range), 1)
+    date = addDays(lastDayOfRange(range), 1);
+    return range;
   };
 }
 

@@ -7,9 +7,9 @@ const CalendarContainer = styled.div`
 `;
 
 const Calendar = () => {
-	const wGen = takeWeek();
-	const data = wGen();
-	return <CalendarContainer>{JSON.stringify(data)}</CalendarContainer>;
+	const wGen = takeMonth()();
+	console.log(wGen)
+	return <CalendarContainer>{ }</CalendarContainer>;
 };
 
 export default Calendar;
