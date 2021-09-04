@@ -28,7 +28,7 @@ const Description = styled.div`
 	font-size:0.8em;
 `;
 
-const DetailsView = ({ children }) => {
+const DetailsView = ({ children, user }) => {
 	const [flight, setFlight] = useState(null);
 	const [launchpad, setLaunchPad] = useState(null);
 	const flightId = window.location.pathname.substring(15);
@@ -63,8 +63,7 @@ const DetailsView = ({ children }) => {
 						</Description>
 						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
 						<Buttons>
-							{/* Add condition to show this button only if logged in */}
-							<CalendarButton flight={flight} launchpad={launchpad} />
+							{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} />}
 						</Buttons>
 					</Container>
 				) : null}

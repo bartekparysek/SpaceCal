@@ -55,7 +55,7 @@ const App = () => {
 						<Route
 							path="/flightdetails/:id"
 							render={() => (
-								<DetailsView>
+								<DetailsView user={user}>
 									<Buttons>
 										<CalendarButton user={user} />
 									</Buttons>

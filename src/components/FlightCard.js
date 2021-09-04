@@ -106,8 +106,6 @@ const FlightCard = ({ flight, launchpad }) => {
 
       ) : (
         <CardB key={side}>
-          {/* add onClick event handlers */}
-
           <LeftSide>
             <div>
               <Link to={`/flightdetails/${flight.id}`}>
@@ -134,7 +132,6 @@ const FlightCard = ({ flight, launchpad }) => {
           </RightSide>
         </CardB>
       )}
-
     </>
   );
 }
