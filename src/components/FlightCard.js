@@ -21,6 +21,7 @@ const CardA = styled.div`
   padding:1rem 1.5rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   animation: ${flipA} 1s;
+  margin-bottom: 1rem;
 `;
 //  CSS for styling three dot button in card
 //
@@ -36,6 +37,7 @@ const CardB = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   animation: ${flipA} 1s;
   z-index:10;
+  margin-bottom: 2px;
 `;
 
 

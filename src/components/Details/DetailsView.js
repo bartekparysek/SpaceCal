@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { format } from 'date-fns'
 import CalendarButton from '../CalendarButton'
 import Container from '../Container';
 import spaceX from '../../apis/spaceX';
@@ -7,6 +8,7 @@ import { LeftSide, RightSide } from '../Home/HomeView';
 import GoogleMap from './GoogleMap';
 import BasicInfo from './BasicInfo';
 import Buttons from './Buttons';
+import Calendar from '../Calendar/Calendar'
 
 export const Section = styled.div`
 	display: flex;
@@ -29,6 +31,7 @@ const Description = styled.div`
 `;
 
 const DetailsView = ({ children, user }) => {
+	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [flight, setFlight] = useState(null);
 	const [launchpad, setLaunchPad] = useState(null);
 	const flightId = window.location.pathname.substring(15);
@@ -71,8 +74,8 @@ const DetailsView = ({ children, user }) => {
 
 			<RightSide>
 
-				<Container title={"August 2021"}>
-
+				<Container title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
+					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 				</Container>
 
 			</RightSide>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { format } from 'date-fns';
 import Container from "../Container";
 import spaceX from "../../apis/spaceX";
 import FlightCard from "../FlightCard";
 import Calendar from "../Calendar/Calendar";
+import Upcoming from "./Upcoming";
 
 export const LeftSide = styled.div`
 	display: flex;
@@ -19,6 +21,7 @@ const Home = styled.div`
 `;
 
 const HomeView = () => {
+	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [flights, setFlights] = useState(null);
 	const [launchpads, setLaunchpads] = useState(null);
 
@@ -55,13 +58,15 @@ const HomeView = () => {
 						/>
 					)}
 				</Container>
-				<Container title={"August 2021"}>
-					<Calendar />
+				<Container title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
+					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 				</Container>
 			</LeftSide>
 
 			<RightSide>
-				<Container title={"Upcoming launches"}></Container>
+				<Container title={"Upcoming launches"}>
+					<Upcoming flights={flights} launchpads={launchpads} />
+				</Container>
 			</RightSide>
 		</Home>
 	);
