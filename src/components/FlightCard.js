@@ -37,7 +37,7 @@ const CardB = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   animation: ${flipA} 1s;
   z-index:10;
-  margin-bottom: 2px;
+  margin-bottom: 1rem;
 `;
 
 
@@ -88,7 +88,7 @@ const LeftSide = styled.div`
   flex-direction: column;
 `
 
-const FlightCard = ({ flight, launchpad }) => {
+const FlightCard = ({ flight, launchpad, user }) => {
   // hold state if its cardA or cardB side
   const [side, setSide] = useState('A');
   const flightDate = new Date(flight.date_utc);
@@ -117,13 +117,13 @@ const FlightCard = ({ flight, launchpad }) => {
                 </WrapperButton>
               </Link>
             </div>
-
-            <div>
+            {user.isSignedIn && <div>
               <WrapperButton>
                 <GrLinkNext />
                 <p>ADD TO GOOGLE CALENDAR</p>
               </WrapperButton>
-            </div>
+            </div>}
+
           </LeftSide>
 
           <RightSide>

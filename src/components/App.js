@@ -16,22 +16,24 @@ const StyledApp = styled.div`
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	min-width: 100vw;
 	background-image: url(${image});
 	background-size: 100vw 100vh;
 	opacity: 1;
 	background-repeat: no-repeat;
 	margin: auto;
-	/* @media screen and (min-width: 350px){
+
+`;
+const StyledSection = styled.div`
+	@media screen and (min-width: 2560px){
+      width: 90%;
+   }
+	  @media screen and (min-width: 350px){
       width: 96%;
    }
    @media screen and (min-width:800px ){
       width: 90%;
    }
-   @media screen and (min-width: 2560px){
-      width: 85%;
-   } */
-`;
-const StyledSection = styled.div`
 	margin: 0 auto;
 	flex:1;
 `;
@@ -51,7 +53,9 @@ const App = () => {
 						<GoogleAuth user={user} setUser={setUser} />
 					</Header>
 					<Switch>
-						<Route path="/" exact component={HomeView}></Route>
+						<Route path="/" exact render={() => (
+							<HomeView user={user} />
+						)}></Route>
 						<Route
 							path="/flightdetails/:id"
 							render={() => (

@@ -20,7 +20,7 @@ const Home = styled.div`
 	justify-content: space-between;
 `;
 
-const HomeView = () => {
+const HomeView = ({ user }) => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [flights, setFlights] = useState(null);
 	const [launchpads, setLaunchpads] = useState(null);
@@ -53,6 +53,7 @@ const HomeView = () => {
 				<Container title={"Next launch"}>
 					{flights && (
 						<FlightCard
+							user={user}
 							flight={flights[0]}
 							launchpad={launchpad(flights[0].launchpad)}
 						/>
@@ -65,7 +66,7 @@ const HomeView = () => {
 
 			<RightSide>
 				<Container title={"Upcoming launches"}>
-					<Upcoming flights={flights} launchpads={launchpads} />
+					<Upcoming user={user} flights={flights} launchpads={launchpads} />
 				</Container>
 			</RightSide>
 		</Home>
