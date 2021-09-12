@@ -66,7 +66,7 @@ const DetailsView = ({ children, user }) => {
 						</Description>
 						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
 						<Buttons>
-							{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} />}
+							{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
 						</Buttons>
 					</Container>
 				) : null}

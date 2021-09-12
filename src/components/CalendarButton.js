@@ -3,7 +3,8 @@ import { MdEvent } from 'react-icons/md';
 import { StyledButton } from './Details/Buttons'
 
 
-const CalendarButton = ({ flight, launchpad, user }) => {
+
+const CalendarButton = ({ flight, launchpad, button }) => {
 
    const addEvent = () => {
 
@@ -38,10 +39,15 @@ const CalendarButton = ({ flight, launchpad, user }) => {
    };
 
    return (
-      <StyledButton flightDetails={flight.details} onClick={() => addEvent()} >
-         <MdEvent />
-         Add to Calendar
-      </StyledButton>
+      <>
+         {button &&
+            <StyledButton onClick={() => addEvent()} >
+               <MdEvent />
+               Add to Calendar
+            </StyledButton>
+         }
+         {!button && <p onClick={() => addEvent()}>ADD TO CALENDAR</p>}
+      </>
    );
 }
 

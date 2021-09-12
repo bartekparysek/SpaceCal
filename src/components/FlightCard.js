@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { GrMoreVertical, GrClose, GrLinkNext } from 'react-icons/gr'
 import Link from './Link'
+import CalendarButton from './CalendarButton'
 
 const flipA = keyframes`
   50%{
@@ -23,8 +24,6 @@ const CardA = styled.div`
   animation: ${flipA} 1s;
   margin-bottom: 1rem;
 `;
-//  CSS for styling three dot button in card
-//
 
 const CardB = styled.div`
   background-color: #F7F7F7;
@@ -38,6 +37,7 @@ const CardB = styled.div`
   animation: ${flipA} 1s;
   z-index:10;
   margin-bottom: 1rem;
+
 `;
 
 
@@ -63,6 +63,9 @@ const WrapperButton = styled.button`
   font-size: 1rem;
   svg{
     margin-right: 1rem;
+  }
+  p:hover{
+    color: #74b9ff;
   }
 `;
 const Top = styled.div`
@@ -120,7 +123,7 @@ const FlightCard = ({ flight, launchpad, user }) => {
             {user.isSignedIn && <div>
               <WrapperButton>
                 <GrLinkNext />
-                <p>ADD TO GOOGLE CALENDAR</p>
+                <CalendarButton flight={flight} launchpad={launchpad} button={false} />
               </WrapperButton>
             </div>}
 
