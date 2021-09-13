@@ -36,6 +36,9 @@ const StyledSection = styled.div`
    }
 	margin: 0 auto;
 	flex:1;
+	h2{
+		color: #fff;
+	}
 `;
 
 const App = () => {

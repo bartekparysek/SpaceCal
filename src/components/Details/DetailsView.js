@@ -18,6 +18,9 @@ export const Section = styled.div`
 	a {
 		padding: 0.5rem 0;
 	}
+	h1{
+		color:#fff;
+	}
 `;
 const Details = styled.div`
 	display: flex;

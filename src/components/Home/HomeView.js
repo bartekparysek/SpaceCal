@@ -59,7 +59,7 @@ const HomeView = ({ user }) => {
 						/>
 					)}
 				</Container>
-				<Container title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
+				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
 					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 				</Container>
 			</LeftSide>

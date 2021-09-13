@@ -40,16 +40,13 @@ const CardB = styled.div`
 
 `;
 
-
-
 const FlipButton = styled.button`
   background-color: inherit;
   border:none;
   z-index: 6;
   padding: 0;
   svg{
-    width: 2rem;
-    height: 2rem ;
+    font-size:1.70rem;
     color:black;
   }
 `;
@@ -79,8 +76,7 @@ const Top = styled.div`
 
 const RightSide = styled.div`
 svg{
-    width: 1.5rem;
-    height: 1.5rem ;
+  font-size:1.25rem;
     color:black;
   }
 `
