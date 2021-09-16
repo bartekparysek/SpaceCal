@@ -5,10 +5,10 @@ import CalendarButton from '../CalendarButton'
 import Container from '../Container';
 import spaceX from '../../apis/spaceX';
 import { LeftSide, RightSide } from '../Home/HomeView';
-import GoogleMap from './GoogleMap';
 import BasicInfo from './BasicInfo';
 import Buttons from './Buttons';
 import Calendar from '../Calendar/Calendar'
+import MapBox from './MapBox';
 
 export const Section = styled.div`
 	display: flex;
@@ -67,17 +67,18 @@ const DetailsView = ({ children, user }) => {
 						<Description>
 							<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
 						</Description>
-						<GoogleMap lat={launchpad.latitude} lng={launchpad.longitude} />
+						<MapBox lat={launchpad.latitude} lng={launchpad.longitude} />
 						<Buttons>
 							{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
 						</Buttons>
+
 					</Container>
 				) : null}
 			</LeftSide>
 
 			<RightSide>
 
-				<Container title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
+				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
 					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 				</Container>
 

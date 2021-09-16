@@ -22,7 +22,6 @@ const StyledApp = styled.div`
 	opacity: 1;
 	background-repeat: no-repeat;
 	margin: auto;
-
 `;
 const StyledSection = styled.div`
 	@media screen and (min-width: 2560px){

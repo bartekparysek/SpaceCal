@@ -19,11 +19,10 @@ export const StyledButton = styled.button`
 	width: 11rem;
 	padding: 0.5rem 1rem;
 	justify-content: center;
-	display: inline-flex;
+	display: flex;
 	white-space: nowrap;
 	svg{
-		height: 2rem;
-		width: 2rem;
+    font-size: 1.5rem;
 		margin-right: 2px;
 		}
 	@media screen and (max-width: 375px) {
@@ -36,18 +35,18 @@ export const StyledButton = styled.button`
 `;
 
 const Buttons = ({ children }) => {
-  return (
-    <ButtonsWrapper>
-      {children}
-      <Link to="/">
-        <StyledButton>
-          <MdList />
-          Flight list
-        </StyledButton>
-      </Link>
+	return (
+		<ButtonsWrapper>
+			{children}
+			<Link to="/">
+				<StyledButton>
+					<MdList />
+					Flight list
+				</StyledButton>
+			</Link>
 
-    </ButtonsWrapper>
-  )
+		</ButtonsWrapper>
+	)
 }
 
 export default Buttons

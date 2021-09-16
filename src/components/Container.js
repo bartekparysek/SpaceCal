@@ -13,7 +13,6 @@ const Wrapper = styled.div`
     margin: 0;
     font-size: 20px;
     padding:0;
-
   }
 `;
 const Header = styled.div`
@@ -67,7 +66,6 @@ const Container = ({ title, children, calendar, setSelectedDate }) => {
         {calendar && <MonthChange onClick={() => previousMonth()}>
           <GrFormPrevious />
         </MonthChange>}
-
         <h1>{title}</h1>
         {calendar && <MonthChange onClick={() => nextMonth()}>
           <GrFormNext />

@@ -11,6 +11,7 @@ export const LeftSide = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 1rem;
+	box-sizing: content-box !important;
 `;
 export const RightSide = styled.div`
 	padding: 0 1rem;
