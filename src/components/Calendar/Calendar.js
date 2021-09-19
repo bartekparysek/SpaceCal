@@ -51,7 +51,7 @@ const WeekNames = () => {
 	);
 }
 
-const Calendar = ({ selectedDate, setSelectedDate }) => {
+const Calendar = ({ selectedDate, setSelectedDate, flights }) => {
 
 	const month = takeMonth(selectedDate)();
 	const dayColor = (day) => {

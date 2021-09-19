@@ -67,7 +67,7 @@ const DetailsView = ({ children, user }) => {
 						<Description>
 							<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
 						</Description>
-						<MapBox lat={launchpad.latitude} lng={launchpad.longitude} />
+						<MapBox launchpad={launchpad} lat={launchpad.latitude} lng={launchpad.longitude} />
 						<Buttons>
 							{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
 						</Buttons>

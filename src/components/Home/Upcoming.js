@@ -23,13 +23,13 @@ const Upcoming = ({ flights, launchpads, user }) => {
 
           <FlightCard
             user={user}
-            flight={flights[1]}
-            launchpad={launchpad(flights[1].launchpad)}
+            flight={flights[2]}
+            launchpad={launchpad(flights[2].launchpad)}
           />
           <FlightCard
             user={user}
-            flight={flights[2]}
-            launchpad={launchpad(flights[2].launchpad)}
+            flight={flights[3]}
+            launchpad={launchpad(flights[3].launchpad)}
           />
         </>
 
