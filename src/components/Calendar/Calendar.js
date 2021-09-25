@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { format, isSameDay, isSameMonth } from 'date-fns'
 import { takeMonth, } from "./buildCalendar";
@@ -41,7 +41,22 @@ const StyledGrid = styled.div`
 	div{
 		padding:0;
 	}
-`
+`;
+
+const MarkDay = styled.div`
+	display:flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	&:after{
+		position: absolute;
+		content: " ";
+		border-top: 2px solid #f39c12;
+		border-bottom: 2px solid #f39c12;
+		border-radius: 2px;
+		width:1.5rem;
+		display: block;
+	}
+`;
 
 const WeekNames = () => {
 	return (
@@ -52,6 +67,18 @@ const WeekNames = () => {
 }
 
 const Calendar = ({ selectedDate, setSelectedDate, flights }) => {
+
+	const Day = ({ day }) => {
+		const flightDays = flights.map(el => new Date(el.date_utc).toLocaleDateString());
+		if (flightDays.includes(new Date(day).toLocaleDateString())) {
+			return (
+				<MarkDay>
+					{format(day, "d")}
+				</MarkDay>);
+		} else {
+			return <div>{format(day, "d")}</div>
+		}
+	}
 
 	const month = takeMonth(selectedDate)();
 	const dayColor = (day) => {
@@ -68,7 +95,7 @@ const Calendar = ({ selectedDate, setSelectedDate, flights }) => {
 				return (<CalWeek key={week[i]}>
 					{week.map(day => (
 						<StyledGrid key={format(day, "DDD")} onClick={() => setSelectedDate(day)} background={backgroundColor(day)} color={dayColor(day)} >
-							<div>{format(day, "d")}</div>
+							{flights && <Day day={day} />}
 						</StyledGrid>
 					)
 					)}
