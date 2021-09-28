@@ -1,43 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { GrMoreVertical, GrClose, GrLinkNext } from 'react-icons/gr'
+import { useSpring, animated } from 'react-spring';
 import Link from './Link'
 import CalendarButton from './CalendarButton'
 
-const flipA = keyframes`
-  50%{
-    transform:rotateY(180deg)
-  }
-  to{
-    transform: rotateY(180deg);
-  }
-`;
-
 const CardA = styled.div`
+  position: absolute;
   background-color: #F7F7F7;
   min-height:15vh;
+  min-width: 26.5vw;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   padding:1rem 1.5rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
-  animation: ${flipA} 1s;
-  margin-bottom: 1rem;
+  backface-visibility: hidden;
+  overflow: hidden;
 `;
 
 const CardB = styled.div`
+  position: absolute;
   background-color: #F7F7F7;
   min-height: 15vh;
+  min-width: 26.5vw;
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
   padding:1rem 1.5rem;
   color: #000;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
-  animation: ${flipA} 1s;
-  z-index:10;
-  margin-bottom: 1rem;
-
+  backface-visibility: hidden;
+  overflow: hidden;
 `;
 
 const FlipButton = styled.button`
@@ -88,25 +82,31 @@ const LeftSide = styled.div`
 `
 
 const FlightCard = ({ flight, launchpad, user }) => {
-  // hold state if its cardA or cardB side
-  const [side, setSide] = useState('A');
   const flightDate = new Date(flight.date_utc);
+  const [flipped, set] = useState(false);
+  const { transform, opacity, display } = useSpring({
+    display: flipped ? '' : 'none',
+    opacity: flipped ? 1 : 0,
+    transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 500, friction: 80 }
+  })
   return (
     <>
-      {side === 'A' ? (
-        <CardA key={side}>
+      <animated.div style={{ opacity: opacity.to(o => 1 - o), transform, }}>
+        <CardA key={'cardA'}>
           <Top>
             <h3>{flight.name}</h3>
-            <FlipButton onClick={() => setSide('B')} >
+            <FlipButton onClick={() => set(state => !state)} >
               <GrMoreVertical />
             </FlipButton>
           </Top>
           {launchpad && <p>{`${launchpad.locality}, ${launchpad.region}`}</p>}
           <p>{flightDate.toDateString()}</p>
         </CardA>
+      </animated.div>
 
-      ) : (
-        <CardB key={side}>
+      <animated.div style={{ opacity, transform: transform.to(t => `${t} rotateY(180deg)`), display }}>
+        <CardB key={'cardB'}>
           <LeftSide>
             <div>
               <Link to={`/flightdetails/${flight.id}`}>
@@ -122,17 +122,15 @@ const FlightCard = ({ flight, launchpad, user }) => {
                 <CalendarButton flight={flight} launchpad={launchpad} button={false} />
               </WrapperButton>
             </div>}
-
           </LeftSide>
 
           <RightSide>
-            <FlipButton onClick={() => setSide('A')}>
+            <FlipButton onClick={() => set(state => !state)}>
               <GrClose />
             </FlipButton>
-
           </RightSide>
         </CardB>
-      )}
+      </animated.div>
     </>
   );
 }

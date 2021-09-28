@@ -28,6 +28,7 @@ const ChildrenWrapper = styled.div`
   background-color: rgba(255,255,255,1);
   padding: 2rem;
   border-radius:  0 0 8px 8px;
+  min-height: 25vh;
 `;
 const MonthChange = styled.button`
   border: none;
@@ -44,8 +45,6 @@ const MonthChange = styled.button`
     background-color: #74b9ff;
   }
 `;
-
-
 
 const Container = ({ title, children, calendar, setSelectedDate }) => {
   const nextMonth = () => {

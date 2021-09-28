@@ -4,7 +4,7 @@ import styled from "styled-components";
 import DetailsView from "./Details/DetailsView";
 import GlobalStyle from "../globalStyles";
 import HomeView from "./Home/HomeView";
-import image from "../assets/49955609618_a2e5f29a91_3k.jpeg";
+import image from "../assets/app_background.jpeg";
 
 import Header from "./Header";
 import Footer from '../components/Footer';

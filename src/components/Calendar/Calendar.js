@@ -50,8 +50,8 @@ const MarkDay = styled.div`
 	&:after{
 		position: absolute;
 		content: " ";
-		border-top: 2px solid #f39c12;
-		border-bottom: 2px solid #f39c12;
+		border-top: 2px solid #e84118;
+		border-bottom: 2px solid #e84118;
 		border-radius: 2px;
 		width:1.5rem;
 		display: block;
@@ -66,7 +66,7 @@ const WeekNames = () => {
 	);
 }
 
-const Calendar = ({ selectedDate, setSelectedDate, flights }) => {
+const Calendar = ({ selectedDate, setSelectedDate, flights = [] }) => {
 
 	const Day = ({ day }) => {
 		const flightDays = flights.map(el => new Date(el.date_utc).toLocaleDateString());
