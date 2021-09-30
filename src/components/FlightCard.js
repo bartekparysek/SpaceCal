@@ -12,6 +12,7 @@ const CardA = styled.div`
   min-width: 26.5vw;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   border-radius: 8px;
   padding:1rem 1.5rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;

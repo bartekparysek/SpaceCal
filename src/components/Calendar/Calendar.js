@@ -18,21 +18,23 @@ const CalList = styled.ul`
 
 const CalWeek = styled.li`
 	display:grid;
-	grid-template-columns: repeat(7, 4.56rem);
+	grid-template-columns: repeat(7, minmax(2rem, 4rem));
 	justify-items: center;
+	font-size: clamp(0.75rem, 1rem, 1.5rem);
 `;
 const CalDayName = styled.li`
 	display:grid;
-	grid-template-columns: repeat(7, 4.56rem);
+	grid-template-columns: repeat(7, minmax(2rem, 4rem));
 	justify-items: center;
 	color: #D8D6D6;
-	padding:1rem 0;
+	padding: clamp(0.5rem, 3%, 1rem) 0;
+	font-size: clamp(0.75rem, 1rem, 1.5rem);;
 `;
 
 const StyledGrid = styled.div`
 	display:flex;
 	justify-content:center;
-	padding: 1rem 2rem;
+	padding:clamp(0.5rem, 3%, 1rem) clamp(1rem,4%, 1.75rem);
 	max-width: 1rem;
 	border-radius: 8px;
 	background-color: ${props => props.background};
@@ -40,6 +42,7 @@ const StyledGrid = styled.div`
 	color: ${props => props.color};
 	div{
 		padding:0;
+		font-size: clamp(0.75rem, 1rem, 1.5rem);
 	}
 `;
 

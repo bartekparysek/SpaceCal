@@ -4,7 +4,7 @@ import styled from "styled-components";
 import DetailsView from "./Details/DetailsView";
 import GlobalStyle from "../globalStyles";
 import HomeView from "./Home/HomeView";
-import image from "../assets/app_background.jpeg";
+
 
 import Header from "./Header";
 import Footer from '../components/Footer';
@@ -17,8 +17,7 @@ const StyledApp = styled.div`
 	flex-direction: column;
 	min-height: 100vh;
 	min-width: 100vw;
-	background-image: url(${image});
-	background-size: 100vw 100vh;
+
 	opacity: 1;
 	background-repeat: no-repeat;
 	margin: auto;
