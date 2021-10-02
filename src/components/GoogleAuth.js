@@ -87,9 +87,9 @@ const GoogleAuth = ({ user, setUser }) => {
    return (
       <div>{
          user.isSignedIn ? (
-            <StyledButton onClick={() => signOut()}>Sign out <FaGoogle /></StyledButton>
+            <StyledButton aria-label={'Sign out'} onClick={() => signOut()}>Sign out <FaGoogle /></StyledButton>
          ) : (
-            <StyledButton onClick={() => signIn()}>Sign in with<FaGoogle /></StyledButton>
+            <StyledButton aria-label={'Sign in with Google'} onClick={() => signIn()}>Sign in with<FaGoogle /></StyledButton>
          )}
       </div>);
 }

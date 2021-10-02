@@ -3,22 +3,31 @@ import styled from "styled-components";
 import { format } from 'date-fns';
 import Container from "../Container";
 import spaceX from "../../apis/spaceX";
-import FlightCard from "../FlightCard";
 import Calendar from "../Calendar/Calendar";
 import Upcoming from "./Upcoming";
+import FlightCard from '../FlightCard'
+
 
 export const LeftSide = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 1rem;
 	box-sizing: content-box !important;
+	align-items: center;
 `;
 export const RightSide = styled.div`
 	padding: 0 1rem;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
 `;
 const Home = styled.div`
 	display: flex;
 	justify-content: space-between;
+
+	@media (max-width: 425px){
+		flex-direction: column;
+	}
 `;
 
 const HomeView = ({ user }) => {
@@ -70,7 +79,7 @@ const HomeView = ({ user }) => {
 					<Upcoming user={user} flights={flights} launchpads={launchpads} />
 				</Container>
 			</RightSide>
-		</Home>
+		</Home >
 	);
 };
 

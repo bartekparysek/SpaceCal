@@ -39,7 +39,7 @@ const Buttons = ({ children }) => {
 		<ButtonsWrapper>
 			{children}
 			<Link to="/">
-				<StyledButton>
+				<StyledButton aria-label={'Flight list'}>
 					<MdList />
 					Flight list
 				</StyledButton>

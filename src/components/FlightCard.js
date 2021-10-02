@@ -6,25 +6,31 @@ import Link from './Link'
 import CalendarButton from './CalendarButton'
 
 const CardA = styled.div`
+  transform: translateX(-50%);
+  left:50%;
   position: absolute;
   background-color: #F7F7F7;
   min-height:15vh;
-  min-width: 26.5vw;
+  width: 25vw;
+  min-width: calc(100% - 2rem);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: 8px;
-  padding:1rem 1.5rem;
+  padding: clamp(0.75rem, 1%, 1rem);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   backface-visibility: hidden;
   overflow: hidden;
 `;
 
 const CardB = styled.div`
+  transform: translateX(-50%);
+  left:50%;
   position: absolute;
   background-color: #F7F7F7;
   min-height: 15vh;
-  min-width: 26.5vw;
+  width: 25vw;
+  min-width: calc(100% - 2rem);
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
@@ -64,8 +70,10 @@ const Top = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0;
-  h3{
-    text-align: center;
+  h2{
+    margin:0;
+    font-size: clamp(1.5rem, 1vw + 0.5rem, 0.75vw + 0.5rem);
+    white-space: nowrap;
   }
 `;
 
@@ -96,8 +104,8 @@ const FlightCard = ({ flight, launchpad, user }) => {
       <animated.div style={{ opacity: opacity.to(o => 1 - o), transform, }}>
         <CardA key={'cardA'}>
           <Top>
-            <h3>{flight.name}</h3>
-            <FlipButton onClick={() => set(state => !state)} >
+            <h2>{flight.name}</h2>
+            <FlipButton aria-label={'Flip'} onClick={() => set(state => !state)} >
               <GrMoreVertical />
             </FlipButton>
           </Top>
@@ -111,7 +119,7 @@ const FlightCard = ({ flight, launchpad, user }) => {
           <LeftSide>
             <div>
               <Link to={`/flightdetails/${flight.id}`}>
-                <WrapperButton>
+                <WrapperButton aria-label={'Check Details'}>
                   <GrLinkNext />
                   <p>CHECK DETAILS</p>
                 </WrapperButton>
@@ -126,7 +134,7 @@ const FlightCard = ({ flight, launchpad, user }) => {
           </LeftSide>
 
           <RightSide>
-            <FlipButton onClick={() => set(state => !state)}>
+            <FlipButton aria-label={'Flip back'} onClick={() => set(state => !state)}>
               <GrClose />
             </FlipButton>
           </RightSide>

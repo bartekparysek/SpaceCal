@@ -41,7 +41,7 @@ const CalendarButton = ({ flight, launchpad, button }) => {
    return (
       <>
          {button &&
-            <StyledButton onClick={() => addEvent()} >
+            <StyledButton aria-label={'Add to Calendar'} onClick={() => addEvent()} >
                <MdEvent />
                Add to Calendar
             </StyledButton>

@@ -17,7 +17,6 @@ const StyledApp = styled.div`
 	flex-direction: column;
 	min-height: 100vh;
 	min-width: 100vw;
-
 	opacity: 1;
 	background-repeat: no-repeat;
 	margin: auto;
@@ -34,9 +33,6 @@ const StyledSection = styled.div`
    }
 	margin: 0 auto;
 	flex:1;
-	h2{
-		color: #fff;
-	}
 `;
 
 const App = () => {

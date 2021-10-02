@@ -14,6 +14,7 @@ const CalList = styled.ul`
 	display:grid;
 	padding:0 0 1rem 0;
 	margin:0;
+	justify-items: center;
 `;
 
 const CalWeek = styled.li`
@@ -26,7 +27,6 @@ const CalDayName = styled.li`
 	display:grid;
 	grid-template-columns: repeat(7, minmax(2rem, 4rem));
 	justify-items: center;
-	color: #D8D6D6;
 	padding: clamp(0.5rem, 3%, 1rem) 0;
 	font-size: clamp(0.75rem, 1rem, 1.5rem);;
 `;
@@ -34,9 +34,9 @@ const CalDayName = styled.li`
 const StyledGrid = styled.div`
 	display:flex;
 	justify-content:center;
-	padding:clamp(0.5rem, 3%, 1rem) clamp(1rem,4%, 1.75rem);
+	padding:clamp(0.5rem, 2%, 1rem) clamp(1.25rem,4%, 1.75rem);
 	max-width: 1rem;
-	border-radius: 8px;
+	border-radius: 5px;
 	background-color: ${props => props.background};
 	cursor: pointer;
 	color: ${props => props.color};
@@ -85,7 +85,7 @@ const Calendar = ({ selectedDate, setSelectedDate, flights = [] }) => {
 
 	const month = takeMonth(selectedDate)();
 	const dayColor = (day) => {
-		if (!isSameMonth(day, selectedDate)) return "#D8D6D6";
+		if (!isSameMonth(day, selectedDate)) return "#5E727D";
 	}
 	const backgroundColor = (day) => {
 		if (isSameDay(day, selectedDate)) return "#74b9ff";

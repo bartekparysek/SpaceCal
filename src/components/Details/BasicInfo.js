@@ -21,8 +21,8 @@ const BasicInfo = ({ flight, launchpad }) => {
     <Header>
       <Logo src={launchpad.images.large} alt={launchpad.full_name}></Logo>
       <div>
-        <h1>{new Date(flight.date_utc).toDateString()}</h1>
-        <h1>{`${launchpad.locality}, ${launchpad.region}`}</h1>
+        <h3>{new Date(flight.date_utc).toDateString()}</h3>
+        <h3>{`${launchpad.locality}, ${launchpad.region}`}</h3>
       </div>
     </Header>
   )

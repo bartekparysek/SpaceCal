@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
    html,body {
       color: #000000;
       font-family: 'News Cycle', sans-serif;
-      font-size: clamp(0.75rem, 1rem, 1.5rem);
+      font-size: clamp(0.8rem,0.5vw + 0.5rem, 1rem);
       margin:0;
       height: 100%;
    }
@@ -20,23 +20,15 @@ const GlobalStyle = createGlobalStyle`
       background-repeat: no-repeat;
       background-attachment: fixed;
    }
-   h1, h2{
+   h1{
+      font-size: clamp(1.75rem, 2rem, 2rem);
       padding-left: 1rem;
       white-space: nowrap;
-      font-size: clamp(0.75rem, 1vw + 1rem, 2vw + 0.5rem);
       @media (max-width: 375px){
-         padding-left: 0.5rem;
-         margin:0;
+         margin:1rem;
       }
    }
-   h2{
-      margin:0;
-   }
-   h3{
-      font-size: clamp(0.5rem, 1vw + 0.5rem, 1vw + 0.5rem);
-      margin:0;
-      white-space: nowrap;
-   }
+
    p{
       margin:0;
    }

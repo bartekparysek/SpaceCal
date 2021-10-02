@@ -6,29 +6,33 @@ import { addMonths, subMonths } from 'date-fns'
 const Wrapper = styled.div`
   color: #000;
   width: 30vw;
+  min-width: calc(100% - 2rem);
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
-  h1{
-    margin: 0;
-    font-size: 20px;
-    padding:0;
-  }
+
+
 `;
 const Header = styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: rgba(255,255,255,0.4);
-    padding: 0.5rem 5rem;
-    border-radius: 8px 8px 0 0;
-    text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(255,255,255,0.4);
+  padding: clamp(0.5rem,1%, 1rem) 0;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  h1{
+    margin: 0;
+    font-size: clamp(1.25rem, 0.5vw + 1rem, 1vw + 0.25rem);
+    padding:0;
+  }
 `
 const ChildrenWrapper = styled.div`
   background-color: rgba(255,255,255,1);
-  padding: 2rem;
+  padding: clamp(1rem, 5%, 2rem);
   border-radius:  0 0 8px 8px;
-  min-height: 25vh;
+  min-height: 20vh;
+
 `;
 const MonthChange = styled.button`
   border: none;
@@ -62,11 +66,11 @@ const Container = ({ title, children, calendar, setSelectedDate }) => {
   return (
     <Wrapper>
       <Header>
-        {calendar && <MonthChange onClick={() => previousMonth()}>
+        {calendar && <MonthChange aria-label={'Previous Month'} onClick={() => previousMonth()}>
           <GrFormPrevious />
         </MonthChange>}
         <h1>{title}</h1>
-        {calendar && <MonthChange onClick={() => nextMonth()}>
+        {calendar && <MonthChange aria-label={'Next Month'} onClick={() => nextMonth()}>
           <GrFormNext />
         </MonthChange>}
       </Header>
