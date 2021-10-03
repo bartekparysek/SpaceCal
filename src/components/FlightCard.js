@@ -62,8 +62,12 @@ const WrapperButton = styled.button`
   svg{
     margin-right: 1rem;
   }
+  p{
+    white-space: nowrap;
+  }
   p:hover{
     color: #74b9ff;
+
   }
 `;
 const Top = styled.div`

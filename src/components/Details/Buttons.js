@@ -3,35 +3,54 @@ import styled from 'styled-components';
 import { MdList } from 'react-icons/md'
 import Link from '../Link';
 
-const ButtonsWrapper = styled.div`
-	padding:1rem 0;
-	display: flex;
-	justify-content: space-between;
-`;
 export const StyledButton = styled.button`
-	align-items: center;
-	font-size: 16px;
+	font-size: clamp(0.5rem, 0.9rem, 1.5rem);
 	font-family:inherit;
 	background-color: #ece7e7ab;
-	border-radius: 8px;
+	border-radius: 5px;
 	color: #000;
 	border: none;
 	width: 11rem;
-	padding: 0.5rem 1rem;
-	justify-content: center;
+	padding: clamp(0.3rem, 5%, 0.5rem) clamp(0.25rem, 1rem, 0.75rem);
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	white-space: nowrap;
+
 	svg{
-    font-size: 1.5rem;
+    font-size: clamp(0.8rem, 1.25rem, 1.5rem);
 		margin-right: 2px;
 		}
-	@media screen and (max-width: 375px) {
-		padding: 0.33rem 0.5rem;
-	}
+
 	&:hover{
       background-color: #ece7e7;
    }
 
+`;
+const ButtonsWrapper = styled.div`
+	padding:1rem 0;
+	display: flex;
+	justify-content: space-between;
+
+	> ${StyledButton} {
+		margin-right: 0.5rem;
+	}
+	@media (max-width: 320px){
+		flex-direction: column;
+		align-items: center;
+		> ${StyledButton} {
+		margin-bottom: 0.5rem;
+		margin-right: 0;
+	}
+	}
+
+	@media screen and (max-width: 650px) and (min-width: 500px){
+    flex-direction: column;
+		align-items: center;
+		> ${StyledButton} {
+		margin-bottom: 0.5rem;
+		margin-right: 0;
+  }}
 `;
 
 const Buttons = ({ children }) => {

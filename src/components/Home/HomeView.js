@@ -11,12 +11,12 @@ import FlightCard from '../FlightCard'
 export const LeftSide = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 0 1rem;
+	padding: 0 clamp(0.25rem, 0.5rem, 1rem);
 	box-sizing: content-box !important;
 	align-items: center;
 `;
 export const RightSide = styled.div`
-	padding: 0 1rem;
+	padding: 0 clamp(0.25rem, 0.5rem, 1rem);
 	display:flex;
 	flex-direction: column;
 	align-items: center;
@@ -25,7 +25,7 @@ const Home = styled.div`
 	display: flex;
 	justify-content: space-between;
 
-	@media (max-width: 425px){
+	@media (max-width: 500px){
 		flex-direction: column;
 	}
 `;

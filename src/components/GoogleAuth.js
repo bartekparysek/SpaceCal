@@ -8,17 +8,15 @@ const StyledButton = styled.button`
    border-radius:8px;
    color: #fff;
    border: none;
-   padding: 0.5rem 2.5rem;
-   font-size: 16px;
+   padding: clamp(0.25rem, 1rem, 0.5rem) clamp(0.5rem, 2rem, 3rem);
+   font-size: clamp(0.75rem, 1rem, 1.5rem);
    display:inline-flex;
    align-items:center;
    white-space: nowrap;
    &:hover{
       background-color: rgba(255,255,255,0.7);
    }
-   @media screen and (max-width: 420px){
-      padding: 0.68rem 0.4rem;
-   }
+
    svg{
       height: 2rem;
       width:2rem;

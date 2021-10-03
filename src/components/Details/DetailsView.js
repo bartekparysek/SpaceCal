@@ -25,6 +25,11 @@ export const Section = styled.div`
 const Details = styled.div`
 	display: flex;
 	justify-content: space-between;
+
+	@media (max-width: 500px){
+		flex-direction: column;
+	}
+
 `;
 
 const Description = styled.div`

@@ -5,12 +5,16 @@ import { addMonths, subMonths } from 'date-fns'
 
 const Wrapper = styled.div`
   color: #000;
-  width: 30vw;
-  min-width: calc(100% - 2rem);
+  width: 35vw;
+  min-width: calc(100% - 1vw);
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
 
+  @media screen and (max-width: 800px) and (min-width: 500px){
+    width: 45vw;
+    min-width: calc(100% - 1rem);
+  }
 
 `;
 const Header = styled.div`

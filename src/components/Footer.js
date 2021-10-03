@@ -4,7 +4,7 @@ const StyledFooter = styled.div`
   display:flex;
   justify-content: center;
   color: #fff;
-  font-size: 20px;
+  font-size: clamp(1.5rem, 1rem, 1rem);
   p{
     margin: 2rem 0;
   }
