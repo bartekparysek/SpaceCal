@@ -21,9 +21,12 @@ const CardA = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   backface-visibility: hidden;
   overflow: hidden;
+  flex-basis:80%;
+  flex-shrink: 0;
 `;
 
 const CardB = styled.div`
+  flex-shrink: 0;
   transform: translateX(-50%);
   left:50%;
   position: absolute;

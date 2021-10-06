@@ -51,6 +51,13 @@ const ButtonsWrapper = styled.div`
 		margin-bottom: 0.5rem;
 		margin-right: 0;
   }}
+	@media screen and (max-width: 930px) and (min-width: 801px){
+    flex-direction: column;
+		align-items: center;
+		> ${StyledButton} {
+		margin-bottom: 0.5rem;
+		margin-right: 0;
+  }}
 `;
 
 const Buttons = ({ children }) => {

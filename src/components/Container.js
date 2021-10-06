@@ -5,8 +5,8 @@ import { addMonths, subMonths } from 'date-fns'
 
 const Wrapper = styled.div`
   color: #000;
-  width: 35vw;
-  min-width: calc(100% - 1vw);
+  width: 30vw;
+  min-width: calc(100% - 1rem);
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
@@ -36,6 +36,8 @@ const ChildrenWrapper = styled.div`
   padding: clamp(1rem, 5%, 2rem);
   border-radius:  0 0 8px 8px;
   min-height: 20vh;
+  display:flex;
+  flex-direction: column;
 
 `;
 const MonthChange = styled.button`
