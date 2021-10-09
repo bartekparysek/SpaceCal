@@ -14,13 +14,6 @@ const Map = styled.div`
   }
 `;
 
-// const RocketIcon = styled.div`
-//   background-image: url(${icon});
-//   background-size: 100%;
-//   width: 1rem;
-//   height: 1rem;
-//   cursor: pointer;
-// `;
 const MapBox = ({ launchpad, lat, lng }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -34,7 +27,7 @@ const MapBox = ({ launchpad, lat, lng }) => {
       center: [lng, lat],
       zoom: 9,
     });
-    // new mapboxgl.Marker(RocketIcon).setLngLat([lng, lat]).addTo(map.current)
+
     map.current.on('load', () => {
       map.current.loadImage(
         rocket,
@@ -61,7 +54,6 @@ const MapBox = ({ launchpad, lat, lng }) => {
             'source': 'points',
             'layout': {
               'icon-image': 'custom-marker',
-              // get the title name from the source's "title" property
               'text-field': ['get', 'title'],
               'text-font': [
                 'Open Sans Semibold',

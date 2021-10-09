@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { format } from 'date-fns';
 
 const Header = styled.div`
 	display: flex;
@@ -21,7 +22,7 @@ const BasicInfo = ({ flight, launchpad }) => {
     <Header>
       <Logo src={launchpad.images.large} alt={launchpad.full_name}></Logo>
       <div>
-        <h3>{new Date(flight.date_utc).toDateString()}</h3>
+        <h3>{format(new Date(flight.date_utc), 'PPPP')}</h3>
         <h3>{`${launchpad.locality}, ${launchpad.region}`}</h3>
       </div>
     </Header>

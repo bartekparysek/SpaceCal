@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { GrMoreVertical, GrClose, GrLinkNext } from 'react-icons/gr'
 import { useSpring, animated } from 'react-spring';
+import { format } from 'date-fns';
 import Link from './Link'
 import CalendarButton from './CalendarButton'
 
@@ -17,7 +18,7 @@ const CardA = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: 8px;
-  padding: clamp(0.75rem, 1%, 1rem);
+  padding: clamp(0.75rem, 1%, 1rem)  clamp(0.8rem, 6%, 2rem) ;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   backface-visibility: hidden;
   overflow: hidden;
@@ -37,7 +38,7 @@ const CardB = styled.div`
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
-  padding:1rem 1.5rem;
+  padding:clamp(0.75rem, 1%, 1rem)  clamp(0.8rem, 6%, 2rem) ;
   color: #000;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   backface-visibility: hidden;
@@ -106,6 +107,7 @@ const FlightCard = ({ flight, launchpad, user }) => {
     transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 }
   })
+  console.log(format(flightDate, 'PPPP'));
   return (
     <>
       <animated.div style={{ opacity: opacity.to(o => 1 - o), transform, }}>
@@ -117,7 +119,7 @@ const FlightCard = ({ flight, launchpad, user }) => {
             </FlipButton>
           </Top>
           {launchpad && <p>{`${launchpad.locality}, ${launchpad.region}`}</p>}
-          <p>{flightDate.toDateString()}</p>
+          <p>{format(flightDate, 'PPPP')}</p>
         </CardA>
       </animated.div>
 
