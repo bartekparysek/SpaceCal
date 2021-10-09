@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import mapboxgl from 'mapbox-gl'
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl'
 import rocket from '../../assets/marker.png';
 
 

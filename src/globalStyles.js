@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import image from "./assets/app_background.jpeg";
+import mobile_image from "./assets/mobile_background.webp";
 
 const GlobalStyle = createGlobalStyle`
    *{
@@ -19,6 +20,9 @@ const GlobalStyle = createGlobalStyle`
 	   background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      @media (max-width: 425px){
+         background-image: url(${mobile_image});
+      }
    }
    h1{
       font-size: clamp(1.75rem, 2rem, 2rem);
