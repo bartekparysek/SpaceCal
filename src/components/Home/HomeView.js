@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import styled from "styled-components";
 import { format } from 'date-fns';
 import Container from "../Container";
 import spaceX from "../../apis/spaceX";
 import Calendar from "../Calendar/Calendar";
 import Upcoming from "./Upcoming";
-import FlightCard from '../FlightCard'
+// import FlightCard from '../FlightCard';
+import Spinner from '../Spinner';
 
+const FlightCard = lazy(() => import('../FlightCard'));
 
 export const LeftSide = styled.div`
 	display: flex;
@@ -61,13 +63,16 @@ const HomeView = ({ user }) => {
 		<Home>
 			<LeftSide>
 				<Container title={"Next launch"}>
-					{flights && (
-						<FlightCard
-							user={user}
-							flight={flights[0]}
-							launchpad={launchpad(flights[0].launchpad)}
-						/>
-					)}
+					<Suspense fallback={<Spinner />}>
+						{flights && (
+							<FlightCard
+								user={user}
+								flight={flights[0]}
+								launchpad={launchpad(flights[0].launchpad)}
+							/>
+						)}
+					</Suspense>
+
 				</Container>
 				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
 					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />

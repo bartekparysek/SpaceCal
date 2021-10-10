@@ -1,6 +1,7 @@
-import React from 'react'
-import FlightCard from '../FlightCard'
+import React, { Suspense, lazy } from 'react'
 import styled from 'styled-components'
+import Spinner from '../Spinner'
+const FlightCard = lazy(() => import('../FlightCard'));
 
 const ThreeCards = styled.div`
   display: flex;
@@ -26,32 +27,34 @@ const Upcoming = ({ flights, launchpads, user }) => {
   return (
     <>
       {flights && (
-        <ThreeCards>
-          <Card>
-            <FlightCard
-              user={user}
-              flight={flights[1]}
-              launchpad={launchpad(flights[1].launchpad)}
-            />
-          </Card>
+        <Suspense fallback={<Spinner />}>
+          <ThreeCards>
+            <Card>
+              <FlightCard
+                user={user}
+                flight={flights[1]}
+                launchpad={launchpad(flights[1].launchpad)}
+              />
+            </Card>
 
-          <Card>
-            <FlightCard
-              user={user}
-              flight={flights[2]}
-              launchpad={launchpad(flights[2].launchpad)}
-            />
-          </Card>
+            <Card>
+              <FlightCard
+                user={user}
+                flight={flights[2]}
+                launchpad={launchpad(flights[2].launchpad)}
+              />
+            </Card>
 
-          <Card>
-            <FlightCard
-              user={user}
-              flight={flights[3]}
-              launchpad={launchpad(flights[3].launchpad)}
-            />
-          </Card>
+            <Card>
+              <FlightCard
+                user={user}
+                flight={flights[3]}
+                launchpad={launchpad(flights[3].launchpad)}
+              />
+            </Card>
 
-        </ThreeCards>
+          </ThreeCards>
+        </Suspense>
 
       )}
     </>

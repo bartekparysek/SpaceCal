@@ -107,7 +107,7 @@ const FlightCard = ({ flight, launchpad, user }) => {
     transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 }
   })
-  console.log(format(flightDate, 'PPPP'));
+
   return (
     <>
       <animated.div style={{ opacity: opacity.to(o => 1 - o), transform, }}>

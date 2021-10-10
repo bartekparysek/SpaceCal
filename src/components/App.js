@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import DetailsView from "./Details/DetailsView";
 import GlobalStyle from "../globalStyles";
 import HomeView from "./Home/HomeView";
 
-
+import Spinner from './Spinner';
 import Header from "./Header";
 import Footer from '../components/Footer';
-import GoogleAuth from './GoogleAuth';
 import Buttons from "./Details/Buttons";
 import CalendarButton from "./CalendarButton";
 
+const GoogleAuth = lazy(() => import('./GoogleAuth'));
 const StyledApp = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -47,7 +47,10 @@ const App = () => {
 			<StyledApp>
 				<StyledSection>
 					<Header>
-						<GoogleAuth user={user} setUser={setUser} />
+						<Suspense fallback={<Spinner />}>
+							<GoogleAuth user={user} setUser={setUser} />
+						</Suspense>
+
 					</Header>
 					<Switch>
 						<Route path="/" exact render={() => (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns'
 import CalendarButton from '../CalendarButton'
@@ -8,7 +8,8 @@ import { LeftSide, RightSide } from '../Home/HomeView';
 import BasicInfo from './BasicInfo';
 import Buttons from './Buttons';
 import Calendar from '../Calendar/Calendar'
-import MapBox from './MapBox';
+import Spinner from '../Spinner';
+const MapBox = lazy(() => import('./MapBox'));
 
 export const Section = styled.div`
 	display: flex;
@@ -69,11 +70,15 @@ const DetailsView = ({ children, user }) => {
 				{flight && launchpad ? (
 					<Container title={flight.name}>
 						<div>
-							<BasicInfo flight={flight} launchpad={launchpad} />
-							<Description>
-								<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
-							</Description>
-							<MapBox launchpad={launchpad} lat={launchpad.latitude} lng={launchpad.longitude} />
+							<Suspense fallback={<Spinner />}>
+								<BasicInfo flight={flight} launchpad={launchpad} />
+								<Description>
+									<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
+								</Description>
+							</Suspense>
+							<Suspense fallback={<Suspense />}>
+								<MapBox launchpad={launchpad} lat={launchpad.latitude} lng={launchpad.longitude} />
+							</Suspense>
 							<Buttons>
 								{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
 							</Buttons>
