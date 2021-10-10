@@ -11,7 +11,7 @@ const Spinner = () => {
 
   return (
     <Wrapper>
-      <SpinnerCircularFixed size={30} color="rgba(94, 114, 125, 0.55)" secondaryColor="rgba(255, 255, 255, 1)" />
+      <SpinnerCircularFixed size={40} color="rgba(255, 255, 255, 0.63)" secondaryColor="rgba(0, 0, 0, 0.24)" />
     </Wrapper>
 
   );

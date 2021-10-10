@@ -67,26 +67,22 @@ const DetailsView = ({ children, user }) => {
 	return (
 		<Details>
 			<LeftSide>
-				{flight && launchpad ? (
-					<Container title={flight.name}>
-						<div>
-							<Suspense fallback={<Spinner />}>
+				<Container title={flight === null ? "Loading..." : flight.name}>
+					<Suspense fallback={<Spinner />}>
+						{flight && launchpad && (
+							<div>
 								<BasicInfo flight={flight} launchpad={launchpad} />
 								<Description>
 									<p>{flight.details === null ? "Description will launch soon" : flight.details}</p>
 								</Description>
-							</Suspense>
-							<Suspense fallback={<Suspense />}>
 								<MapBox launchpad={launchpad} lat={launchpad.latitude} lng={launchpad.longitude} />
-							</Suspense>
-							<Buttons>
-								{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
-							</Buttons>
-						</div>
-
-
-					</Container>
-				) : null}
+								<Buttons>
+									{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
+								</Buttons>
+							</div>
+						)}
+					</Suspense>
+				</Container>
 			</LeftSide>
 
 			<RightSide>
