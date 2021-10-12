@@ -36,7 +36,7 @@ const Details = styled.div`
 const Description = styled.div`
 	padding: 0.5rem 0;
 	text-align: justify;
-	font-size:0.8em;
+	font-size:1em;
 `;
 
 const DetailsView = ({ children, user }) => {

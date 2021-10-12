@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { FaGoogle } from 'react-icons/fa'
+import { FaGoogle } from 'react-icons/fa';
 
 const StyledButton = styled.button`
 
@@ -31,6 +31,7 @@ const StyledButton = styled.button`
 `;
 
 const GoogleAuth = ({ user, setUser }) => {
+
    const auth = useRef(null);
    useEffect(() => {
       window.gapi.load('client:auth2', () => {

@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
    html,body {
       color: #000000;
       font-family: 'News Cycle', sans-serif;
-      font-size: clamp(0.8rem,0.5vw + 0.5rem, 1rem);
+      font-size: clamp(0.8rem,0.6vw + 0.6rem, 1rem);
       margin:0;
       height: 100%;
    }
