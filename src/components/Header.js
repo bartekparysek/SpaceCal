@@ -1,12 +1,10 @@
 import React from 'react';
 import Link from './Link';
 import { Section } from './Details/DetailsView';
-import ImportScript from './customHooks/ImportScript';
-
-
+import { useImportScript } from './customHooks/UseImportScript';
 
 const Header = ({ children }) => {
-   ImportScript('https://apis.google.com/js/api.js');
+   useImportScript('https://apis.google.com/js/api.js', 2000)
    return (
       <>
          <Section>
