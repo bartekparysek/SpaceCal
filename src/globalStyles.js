@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
       white-space: nowrap;
       @media (max-width: 375px){
          margin:1rem;
+         padding-left:0;
       }
    }
 

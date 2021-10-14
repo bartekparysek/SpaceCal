@@ -22,6 +22,10 @@ export const Section = styled.div`
 	h1{
 		color:#fff;
 	}
+	@media (max-width: 500px){
+		padding-right: 1rem;
+	}
+
 `;
 const Details = styled.div`
 	display: flex;
