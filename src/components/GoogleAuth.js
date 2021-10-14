@@ -1,31 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { FaGoogle } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 
 const StyledButton = styled.button`
-
-   background-color: rgba(255,255,255,0.5);
-   border-radius:8px;
-   color: #fff;
+   font-family: 'Roboto', sans-serif;
+   background-color: #ffff;
+   border-radius:5px;
    border: none;
-   padding: clamp(0.25rem, 1rem, 0.5rem) clamp(0.5rem, 2rem, 3rem);
+   padding: clamp(0.25rem, 3%, 3rem) clamp(0.5rem, 3%, 3rem);
    font-size: clamp(0.75rem, 1rem, 1.5rem);
    display:inline-flex;
    align-items:center;
    white-space: nowrap;
-   &:hover{
-      background-color: rgba(255,255,255,0.7);
-   }
-
    svg{
-      height: 2rem;
-      width:2rem;
-      margin-left: 0.4rem;
-      @media screen and (max-width:375px){
-         height: 1.3rem;
-         width: 1.3rem;
-         margin-left: 0.2rem;
-      }
+      font-size: 2rem;
+      margin-right: 0.75rem;
+   }
+   &:hover{
+      background-color:#ece7e7
    }
 
 `;
@@ -86,9 +78,9 @@ const GoogleAuth = ({ user, setUser }) => {
    return (
       <div>{
          user.isSignedIn ? (
-            <StyledButton aria-label={'Sign out'} onClick={() => signOut()}>Sign out <FaGoogle /></StyledButton>
+            <StyledButton aria-label={'Sign out'} onClick={() => signOut()}><FcGoogle /> Sign out</StyledButton>
          ) : (
-            <StyledButton aria-label={'Sign in with Google'} onClick={() => signIn()}>Sign in with<FaGoogle /></StyledButton>
+            <StyledButton aria-label={'Sign in with Google'} onClick={() => signIn()}><FcGoogle /> Sign in with Google</StyledButton>
          )}
       </div>);
 }

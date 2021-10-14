@@ -5,7 +5,6 @@ import Container from "../Container";
 import spaceX from "../../apis/spaceX";
 import Calendar from "../Calendar/Calendar";
 import Upcoming from "./Upcoming";
-// import FlightCard from '../FlightCard';
 import Spinner from '../Spinner';
 
 const FlightCard = lazy(() => import('../FlightCard'));
