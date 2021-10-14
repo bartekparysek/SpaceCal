@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { format } from 'date-fns';
 import Container from "../Container";
 import spaceX from "../../apis/spaceX";
-import Calendar from "../Calendar/Calendar";
+
 import Upcoming from "./Upcoming";
 import Spinner from '../Spinner';
 
 const FlightCard = lazy(() => import('../FlightCard'));
+const Calendar = lazy(() => import('../Calendar/Calendar'));
 
 export const LeftSide = styled.div`
 	display: flex;
@@ -74,7 +75,10 @@ const HomeView = ({ user }) => {
 
 				</Container>
 				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
-					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
+					<Suspense fallback={<Spinner />} >
+
+						<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
+					</Suspense>
 				</Container>
 			</LeftSide>
 

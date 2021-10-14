@@ -51,7 +51,7 @@ const App = () => {
 				<StyledSection>
 					<Header>
 						<Suspense fallback={<Spinner />}>
-							<DelayedRender delay={2500}>
+							<DelayedRender delay={2000}>
 								<GoogleAuth user={user} setUser={setUser} />
 							</DelayedRender>
 						</Suspense>

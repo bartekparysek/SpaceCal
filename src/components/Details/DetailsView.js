@@ -7,9 +7,10 @@ import spaceX from '../../apis/spaceX';
 import { LeftSide, RightSide } from '../Home/HomeView';
 import BasicInfo from './BasicInfo';
 import Buttons from './Buttons';
-import Calendar from '../Calendar/Calendar'
+
 import Spinner from '../Spinner';
 const MapBox = lazy(() => import('./MapBox'));
+const Calendar = lazy(() => import('../Calendar/Calendar'));
 
 export const Section = styled.div`
 	display: flex;
@@ -90,9 +91,10 @@ const DetailsView = ({ children, user }) => {
 			</LeftSide>
 
 			<RightSide>
-
 				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
-					<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+					<Suspense fallback={<Spinner />}>
+						<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+					</Suspense>
 				</Container>
 
 			</RightSide>
