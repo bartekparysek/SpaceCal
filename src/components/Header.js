@@ -4,7 +4,7 @@ import { Section } from './Details/DetailsView';
 import { useImportScript } from './customHooks/UseImportScript';
 
 const Header = ({ children }) => {
-   useImportScript('https://apis.google.com/js/api.js', 1500)
+   useImportScript('https://apis.google.com/js/api.js', 1000)
    return (
       <>
          <Section>

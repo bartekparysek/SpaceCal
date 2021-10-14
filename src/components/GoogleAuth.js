@@ -7,10 +7,12 @@ const StyledButton = styled.button`
    background-color: #ffff;
    border-radius:5px;
    border: none;
-   padding: clamp(0.25rem, 3%, 3rem) clamp(0.5rem, 3%, 3rem);
+   min-width: calc(22ch - 1rem);
+   padding:0.25rem clamp(0.5vw ,5% ,1vw);
    font-size: clamp(0.75rem, 1rem, 1.5rem);
    display:inline-flex;
    align-items:center;
+   justify-content: center;
    white-space: nowrap;
    svg{
       font-size: 2rem;
@@ -76,12 +78,12 @@ const GoogleAuth = ({ user, setUser }) => {
 
    }
    return (
-      <div>{
-         user.isSignedIn ? (
-            <StyledButton aria-label={'Sign out'} onClick={() => signOut()}><FcGoogle /> Sign out</StyledButton>
-         ) : (
-            <StyledButton aria-label={'Sign in with Google'} onClick={() => signIn()}><FcGoogle /> Sign in with Google</StyledButton>
-         )}
+      <div>
+         <StyledButton
+            aria-label={'Google Login'}
+            onClick={() => user.isSignedIn ? signOut() : signIn()}>
+            <FcGoogle />{user.isSignedIn ? 'Sign out' : 'Sign in with Google'}
+         </StyledButton>
       </div>);
 }
 
