@@ -8,20 +8,19 @@ const StyledButton = styled.button`
    border-radius:5px;
    border: none;
    min-width: calc(22ch - 1rem);
-   padding:0.25rem clamp(0.5vw ,5% ,1vw);
-   font-size: clamp(0.75rem, 1rem, 1.5rem);
+   padding:0.5rem clamp(1vw, 5%, 1vw);
+   font-size: 1em;
    display:inline-flex;
    align-items:center;
    justify-content: center;
    white-space: nowrap;
    svg{
-      font-size: 2rem;
+      font-size: 1.25em;
       margin-right: 0.75rem;
    }
    &:hover{
       background-color:#ece7e7
    }
-
 `;
 
 const GoogleAuth = ({ user, setUser }) => {
