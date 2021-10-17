@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { format } from 'date-fns'
 import CalendarButton from '../CalendarButton'
 import Container from '../Container';
-import spaceX from '../../apis/spaceX';
 import { LeftSide, RightSide } from '../Home/HomeView';
 import BasicInfo from './BasicInfo';
 import Buttons from './Buttons';
@@ -35,7 +34,6 @@ const Details = styled.div`
 	@media (max-width: 500px){
 		flex-direction: column;
 	}
-
 `;
 
 const Description = styled.div`
@@ -44,35 +42,29 @@ const Description = styled.div`
 	font-size:1em;
 `;
 
-const DetailsView = ({ children, user }) => {
-	const [selectedDate, setSelectedDate] = useState(new Date());
+const DetailsView = ({ children, user, flights, launchpads, selectedDate, setSelectedDate }) => {
 	const [flight, setFlight] = useState(null);
 	const [launchpad, setLaunchPad] = useState(null);
 	const flightId = window.location.pathname.substring(15);
 
+	useEffect(() => {
+		if (flights) {
+			const [searchedFlight] = flights.filter(el => el.id === flightId);
+			setFlight(searchedFlight);
+		}
+	}, [flightId, flights]);
 
 	useEffect(() => {
-		const fetchFlight = async (id) => {
-			const response = await spaceX.get(`/launches/${id}`);
-			setFlight(response.data);
+		if (launchpads && flight) {
+			const [searchedLaunchpad] = launchpads.filter(el => el.id === flight.launchpad);
+			setLaunchPad(searchedLaunchpad);
 		}
-		fetchFlight(flightId);
-	}, [flightId]);
-
-	useEffect(() => {
-		const fetchLaunchPad = async (id) => {
-			const response = await spaceX.get(`/launchpads/${id}`)
-			setLaunchPad(response.data);
-		}
-		if (flight) {
-			fetchLaunchPad(flight.launchpad)
-		}
-	}, [flight])
+	}, [launchpads, flight])
 
 	return (
 		<Details>
 			<LeftSide>
-				<Container title={flight === null ? "Loading..." : flight.name}>
+				<Container title={!flight ? "Loading..." : flight.name}>
 					<Suspense fallback={<Spinner />}>
 						{flight && launchpad && (
 							<div>
@@ -93,10 +85,9 @@ const DetailsView = ({ children, user }) => {
 			<RightSide>
 				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
 					<Suspense fallback={<Spinner />}>
-						<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+						<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
 					</Suspense>
 				</Container>
-
 			</RightSide>
 		</Details>
 	);

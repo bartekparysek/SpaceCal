@@ -8,11 +8,12 @@ import Footer from '../components/Footer';
 import Header from './Header';
 import Buttons from "./Details/Buttons";
 import CalendarButton from "./CalendarButton";
-
+import useFetch from './customHooks/UseFetch';
 import DelayedRender from "./DelayedRender";
 const GoogleAuth = lazy(() => import('./GoogleAuth'));
 const DetailsView = lazy(() => import('./Details/DetailsView'));
 const HomeView = lazy(() => import('./Home/HomeView'));
+const Calendar = lazy(() => import('./Calendar/Calendar'));
 
 
 const StyledApp = styled.div`
@@ -43,6 +44,9 @@ const App = () => {
 		isSignedIn: false,
 		email: null,
 	});
+	const [selectedDate, setSelectedDate] = useState(new Date());
+	const { data: flights } = useFetch("/launches/upcoming");
+	const { data: launchpads } = useFetch("/launchpads");
 
 	return (
 		<Router>
@@ -59,12 +63,14 @@ const App = () => {
 					<Suspense fallback={<Spinner />}>
 						<Switch>
 							<Route path="/" exact render={() => (
-								<HomeView user={user} />
+								<HomeView user={user} flights={flights} launchpads={launchpads} selectedDate={selectedDate} setSelectedDate={setSelectedDate} >
+									<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
+								</HomeView>
 							)}></Route>
 							<Route
 								path="/flightdetails/:id"
 								render={() => (
-									<DetailsView user={user}>
+									<DetailsView user={user} flights={flights} launchpads={launchpads} selectedDate={selectedDate} setSelectedDate={setSelectedDate}>
 										<Buttons>
 											<CalendarButton user={user} />
 										</Buttons>

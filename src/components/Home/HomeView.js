@@ -1,14 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import styled from "styled-components";
 import { format } from 'date-fns';
 import Container from "../Container";
-import spaceX from "../../apis/spaceX";
-
 import Upcoming from "./Upcoming";
 import Spinner from '../Spinner';
 
 const FlightCard = lazy(() => import('../FlightCard'));
-const Calendar = lazy(() => import('../Calendar/Calendar'));
 
 export const LeftSide = styled.div`
 	display: flex;
@@ -32,28 +29,11 @@ const Home = styled.div`
 	}
 `;
 
-const HomeView = ({ user }) => {
-	const [selectedDate, setSelectedDate] = useState(new Date());
-	const [flights, setFlights] = useState(null);
-	const [launchpads, setLaunchpads] = useState(null);
-
-	useEffect(() => {
-		const fetchFlights = async () => {
-			const response = await spaceX.get("/launches/upcoming");
-			setFlights(response.data);
-		};
-		const fetchLaunchPads = async () => {
-			const response = await spaceX.get("/launchpads");
-			setLaunchpads(response.data);
-		};
-		fetchFlights();
-		fetchLaunchPads();
-	}, []);
-
-	const launchpad = (launchpadId) => {
-		if (launchpads) {
+const HomeView = ({ user, flights, launchpads, children, selectedDate, setSelectedDate }) => {
+	const launchpad = (flight) => {
+		if (launchpads && flights) {
 			const launchpadData = launchpads.filter(
-				(pad) => pad.id === launchpadId
+				(pad) => pad.id === flight.launchpad
 			);
 			return launchpadData[0];
 		}
@@ -64,20 +44,13 @@ const HomeView = ({ user }) => {
 			<LeftSide>
 				<Container title={"Next launch"}>
 					<Suspense fallback={<Spinner />}>
-						{flights && (
-							<FlightCard
-								user={user}
-								flight={flights[0]}
-								launchpad={launchpad(flights[0].launchpad)}
-							/>
-						)}
+						{flights && (<FlightCard user={user} flight={flights[0]} launchpad={launchpad(flights[0])} />)}
 					</Suspense>
 
 				</Container>
 				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
 					<Suspense fallback={<Spinner />} >
-
-						<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
+						{children}
 					</Suspense>
 				</Container>
 			</LeftSide>
