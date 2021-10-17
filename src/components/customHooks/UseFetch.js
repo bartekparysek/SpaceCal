@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import spaceX from "../../apis/spaceX";
 
 const useFetch = (url) => {
-  const [data, setData] = useState({ data: [], isFetching: false, error: null });
+  const [data, setData] = useState({ data: null, isFetching: false, error: null });
   const [endpoint] = useState(url);
 
   useEffect(() => {
