@@ -4,7 +4,7 @@ import Container from "../Container";
 import Upcoming from "./Upcoming";
 import Spinner from '../Spinner';
 
-const FlightCard = lazy(() => import('../FlightCard'));
+const FlightCard = lazy(() => import('../FlipCard/FlightCard'));
 
 export const LeftSide = styled.div`
 	display: flex;

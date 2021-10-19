@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import styled from 'styled-components'
 import Spinner from '../Spinner'
-const FlightCard = lazy(() => import('../FlightCard'));
+const FlightCard = lazy(() => import('../FlipCard/FlightCard'));
 
 const ThreeCards = styled.div`
   display: flex;
