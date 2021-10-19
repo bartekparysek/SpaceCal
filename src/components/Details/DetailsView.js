@@ -1,15 +1,13 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import styled from 'styled-components';
-import { format } from 'date-fns'
 import CalendarButton from '../CalendarButton'
 import Container from '../Container';
 import { LeftSide, RightSide } from '../Home/HomeView';
 import BasicInfo from './BasicInfo';
 import Buttons from './Buttons';
-
 import Spinner from '../Spinner';
 const MapBox = lazy(() => import('./MapBox'));
-const Calendar = lazy(() => import('../Calendar/Calendar'));
+
 
 export const Section = styled.div`
 	display: flex;
@@ -25,8 +23,8 @@ export const Section = styled.div`
 	@media (max-width: 500px){
 		padding-right: 1rem;
 	}
-
 `;
+
 const Details = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -74,7 +72,7 @@ const DetailsView = ({ children, user, flights, launchpads, selectedDate, setSel
 								</Description>
 								<MapBox launchpad={launchpad} lat={launchpad.latitude} lng={launchpad.longitude} />
 								<Buttons>
-									{user.isSignedIn && <CalendarButton flight={flight} launchpad={launchpad} button={true} />}
+									{user.isSignedIn && <CalendarButton user={user} flight={flight} launchpad={launchpad} button={true} />}
 								</Buttons>
 							</div>
 						)}
@@ -83,7 +81,7 @@ const DetailsView = ({ children, user, flights, launchpads, selectedDate, setSel
 			</LeftSide>
 
 			<RightSide>
-				<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
+				{children}
 			</RightSide>
 		</Details>
 	);

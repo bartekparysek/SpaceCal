@@ -5,8 +5,6 @@ import { takeMonth, } from "./buildCalendar";
 import Container from "../Container";
 import Spinner from "../Spinner";
 
-
-
 const CalendarContainer = styled.div`
 	background-color: #f7f7f7;
 	border-radius: 8px;
@@ -112,17 +110,13 @@ const Calendar = ({ selectedDate, setSelectedDate, flights = [] }) => {
 									<StyledGrid key={format(day, "DDD")} onClick={() => setSelectedDate(day)} background={backgroundColor(day)} color={dayColor(day)} >
 										{flights && <Day day={day} />}
 									</StyledGrid>
-								)
-								)}
+								))}
 							</CalWeek>)
 						})}
-
 					</CalList>
 				</CalendarContainer>
 			</Suspense>
 		</Container>
-
-
 	);
 };
 

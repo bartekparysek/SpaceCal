@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import styled from "styled-components";
-import { format } from 'date-fns';
 import Container from "../Container";
 import Upcoming from "./Upcoming";
 import Spinner from '../Spinner';

@@ -1,20 +1,15 @@
 import React, { useState, lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyle from "../globalStyles";
 
 import Spinner from './Spinner';
 import Footer from '../components/Footer';
 import Header from './Header';
-import Buttons from "./Details/Buttons";
-import CalendarButton from "./CalendarButton";
 import useFetch from './customHooks/UseFetch';
 import DelayedRender from "./DelayedRender";
+import Routing from "./Routing";
 const GoogleAuth = lazy(() => import('./GoogleAuth'));
-const DetailsView = lazy(() => import('./Details/DetailsView'));
-const HomeView = lazy(() => import('./Home/HomeView'));
-const Calendar = lazy(() => import('./Calendar/Calendar'));
-
 
 const StyledApp = styled.div`
 	display: flex;
@@ -61,23 +56,7 @@ const App = () => {
 						</Suspense>
 					</Header>
 					<Suspense fallback={<Spinner />}>
-						<Switch>
-							<Route path="/" exact render={() => (
-								<HomeView user={user} flights={flights} launchpads={launchpads} selectedDate={selectedDate} setSelectedDate={setSelectedDate} >
-									<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
-								</HomeView>
-							)}></Route>
-							<Route
-								path="/flightdetails/:id"
-								render={() => (
-									<DetailsView user={user} flights={flights} launchpads={launchpads} selectedDate={selectedDate} setSelectedDate={setSelectedDate}>
-										<Buttons>
-											<CalendarButton user={user} />
-										</Buttons>
-									</DetailsView>
-								)}
-							></Route>
-						</Switch>
+						<Routing user={user} flights={flights} launchpads={launchpads} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 					</Suspense>
 				</StyledSection>
 				<Footer />

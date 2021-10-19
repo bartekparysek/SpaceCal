@@ -1,7 +1,6 @@
 import React, { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-
 const DetailsView = lazy(() => import('./Details/DetailsView'));
 const HomeView = lazy(() => import('./Home/HomeView'));
 const Calendar = lazy(() => import('./Calendar/Calendar'));
