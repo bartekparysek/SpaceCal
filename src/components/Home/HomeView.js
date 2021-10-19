@@ -46,13 +46,8 @@ const HomeView = ({ user, flights, launchpads, children, selectedDate, setSelect
 					<Suspense fallback={<Spinner />}>
 						{flights && (<FlightCard user={user} flight={flights[0]} launchpad={launchpad(flights[0])} />)}
 					</Suspense>
-
 				</Container>
-				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
-					<Suspense fallback={<Spinner />} >
-						{children}
-					</Suspense>
-				</Container>
+				{children}
 			</LeftSide>
 
 			<RightSide>

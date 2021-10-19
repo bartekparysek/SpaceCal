@@ -83,11 +83,7 @@ const DetailsView = ({ children, user, flights, launchpads, selectedDate, setSel
 			</LeftSide>
 
 			<RightSide>
-				<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
-					<Suspense fallback={<Spinner />}>
-						<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
-					</Suspense>
-				</Container>
+				<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} flights={flights} />
 			</RightSide>
 		</Details>
 	);

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import { format, isSameDay, isSameMonth } from 'date-fns'
 import { takeMonth, } from "./buildCalendar";
+import Container from "../Container";
+import Spinner from "../Spinner";
+
 
 
 const CalendarContainer = styled.div`
@@ -97,22 +100,30 @@ const Calendar = ({ selectedDate, setSelectedDate, flights = [] }) => {
 		if (isSameDay(day, selectedDate)) return "#74b9ff";
 	}
 
-	return <CalendarContainer>
-		<CalList>
-			<WeekNames />
-			{month.map((week, i) => {
-				return (<CalWeek key={week[i]}>
-					{week.map(day => (
-						<StyledGrid key={format(day, "DDD")} onClick={() => setSelectedDate(day)} background={backgroundColor(day)} color={dayColor(day)} >
-							{flights && <Day day={day} />}
-						</StyledGrid>
-					)
-					)}
-				</CalWeek>)
-			})}
+	return (
+		<Container setSelectedDate={setSelectedDate} calendar title={`${format(selectedDate, "MMMM")} ${format(selectedDate, "yyyy")}`}>
+			<Suspense fallback={<Spinner />} >
+				<CalendarContainer>
+					<CalList>
+						<WeekNames />
+						{month.map((week, i) => {
+							return (<CalWeek key={week[i]}>
+								{week.map(day => (
+									<StyledGrid key={format(day, "DDD")} onClick={() => setSelectedDate(day)} background={backgroundColor(day)} color={dayColor(day)} >
+										{flights && <Day day={day} />}
+									</StyledGrid>
+								)
+								)}
+							</CalWeek>)
+						})}
 
-		</CalList>
-	</CalendarContainer>;
+					</CalList>
+				</CalendarContainer>
+			</Suspense>
+		</Container>
+
+
+	);
 };
 
 export default Calendar;
