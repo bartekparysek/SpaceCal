@@ -4,9 +4,6 @@ import userEvent from "@testing-library/user-event";
 
 import FlightList from "../FlightList";
 
-
-
-
 describe('Flight List,', () => {
 
    test('renders next launch and upcoming launches', async () => {

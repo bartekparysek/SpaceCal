@@ -5,23 +5,28 @@ import { FcGoogle } from 'react-icons/fc';
 const StyledButton = styled.button`
    font-family: 'Roboto', sans-serif;
    background-color: #ffff;
-   border-radius:5px;
+   border-radius:4px;
    border: none;
+   font-size: 1em;
    min-width: calc(22ch - 1rem);
    padding:0.5rem clamp(1vw, 5%, 1vw);
-   font-size: 1em;
    display:inline-flex;
    align-items:center;
    justify-content: center;
    white-space: nowrap;
+   cursor: pointer;
    svg{
       font-size: 1.25em;
-      margin-right: 0.75rem;
    }
    &:hover{
       background-color:#ece7e7
    }
+   div{
+      min-width: calc(20ch - 1rem) ;
+
+   }
 `;
+
 
 const GoogleAuth = ({ user, setUser }) => {
 
@@ -77,13 +82,13 @@ const GoogleAuth = ({ user, setUser }) => {
 
    }
    return (
-      <div>
-         <StyledButton
-            aria-label={'Google Login'}
-            onClick={() => user.isSignedIn ? signOut() : signIn()}>
-            <FcGoogle />{user.isSignedIn ? 'Sign out' : 'Sign in with Google'}
-         </StyledButton>
-      </div>);
+      <StyledButton
+         aria-label={'Google Login'}
+         onClick={() => user.isSignedIn ? signOut() : signIn()}>
+         <FcGoogle />
+         <div>{user.isSignedIn ? 'Sign out' : 'Sign in with Google'}</div>
+      </StyledButton>
+   );
 }
 
 export default GoogleAuth;

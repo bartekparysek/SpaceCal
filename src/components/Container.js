@@ -48,6 +48,7 @@ const MonthChange = styled.button`
   align-items: center;
   padding: 0.25rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
+  cursor: pointer;
   svg{
     font-size: 1.2rem;
   }

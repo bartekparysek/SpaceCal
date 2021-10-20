@@ -10,6 +10,7 @@ const FlipButton = styled.button`
   border:none;
   z-index: 6;
   padding: 0;
+  cursor: pointer;
   svg{
     font-size:1.70rem;
     color:black;

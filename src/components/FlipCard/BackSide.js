@@ -4,7 +4,7 @@ import Link from '../Link';
 import CalendarButton from '../CalendarButton'
 import { GrLinkNext } from 'react-icons/gr'
 
-const CardB = styled.div`
+const BackCard = styled.div`
   flex-shrink: 0;
   transform: translateX(-50%);
   left:50%;
@@ -56,7 +56,7 @@ const LeftSide = styled.div`
 
 const BackSide = ({ flight, launchpad, user, children }) => {
   return (
-    <CardB key={'cardB'}>
+    <BackCard key={'cardB'}>
       <LeftSide>
         <div>
           <Link to={`/flightdetails/${flight.id}`}>
@@ -76,7 +76,7 @@ const BackSide = ({ flight, launchpad, user, children }) => {
       <RightSide>
         {children}
       </RightSide>
-    </CardB>
+    </BackCard>
   )
 }
 

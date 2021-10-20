@@ -16,6 +16,7 @@ export const StyledButton = styled.button`
 	align-items: center;
 	justify-content: center;
 	white-space: nowrap;
+	cursor: pointer;
 
 	svg{
     font-size: clamp(0.8rem, 1.25rem, 1.5rem);
