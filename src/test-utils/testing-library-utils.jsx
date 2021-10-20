@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";

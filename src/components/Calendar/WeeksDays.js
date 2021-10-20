@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { format, isSameMonth, isSameDay } from "date-fns";
 import Day from "./Day";
@@ -25,11 +25,16 @@ const StyledGrid = styled.div`
 `;
 
 const WeeksDays = ({ month, flights, setSelectedDate, selectedDate }) => {
+  const [open, setOpen] = useState(false);
   const dayColor = (day) => {
     if (!isSameMonth(day, selectedDate)) return "#5E727D";
   };
   const backgroundColor = (day) => {
     if (isSameDay(day, selectedDate)) return "#74b9ff";
+  };
+  const handleClick = (day) => {
+    setOpen(!open);
+    setSelectedDate(day);
   };
   return (
     <>
@@ -39,11 +44,18 @@ const WeeksDays = ({ month, flights, setSelectedDate, selectedDate }) => {
             {week.map((day) => (
               <StyledGrid
                 key={format(day, "DDD")}
-                onClick={() => setSelectedDate(day)}
+                onClick={() => handleClick(day)}
                 background={backgroundColor(day)}
                 color={dayColor(day)}
               >
-                {flights && <Day day={day} flights={flights} />}
+                {flights && (
+                  <Day
+                    open={open}
+                    day={day}
+                    flights={flights}
+                    selectedDate={selectedDate}
+                  />
+                )}
               </StyledGrid>
             ))}
           </CalWeek>

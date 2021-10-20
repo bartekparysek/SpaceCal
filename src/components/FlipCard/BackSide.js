@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "../Link";
 import CalendarButton from "../CalendarButton";
 import { GrLinkNext } from "react-icons/gr";
+import DetailsLink from "./DetailsLink";
 
 const BackCard = styled.div`
   flex-shrink: 0;
@@ -22,7 +23,7 @@ const BackCard = styled.div`
   backface-visibility: hidden;
   overflow: hidden;
 `;
-const WrapperButton = styled.button`
+export const WrapperButton = styled.button`
   background-color: inherit;
   display: flex;
   border: none;
@@ -57,14 +58,7 @@ const BackSide = ({ flight, launchpad, user, children }) => {
   return (
     <BackCard key={"cardB"}>
       <LeftSide>
-        <div>
-          <Link to={`/flightdetails/${flight.id}`}>
-            <WrapperButton aria-label={"Check Details"}>
-              <GrLinkNext />
-              <p>CHECK DETAILS</p>
-            </WrapperButton>
-          </Link>
-        </div>
+        <DetailsLink flight={flight} />
         {user.isSignedIn && (
           <div>
             <WrapperButton>
