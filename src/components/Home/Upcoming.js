@@ -1,13 +1,13 @@
-import React, { Suspense, lazy } from 'react'
-import styled from 'styled-components'
-import Spinner from '../Spinner'
-const FlightCard = lazy(() => import('../FlipCard/FlightCard'));
+import React, { Suspense, lazy } from "react";
+import styled from "styled-components";
+import Spinner from "../Spinner";
+const FlightCard = lazy(() => import("../FlipCard/FlightCard"));
 
 const ThreeCards = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
+`;
 const Card = styled.div`
   position: relative;
   min-height: 15vh;
@@ -15,12 +15,9 @@ const Card = styled.div`
 `;
 
 const Upcoming = ({ flights, launchpads, user }) => {
-
   const launchpad = (launchpadId) => {
     if (launchpads) {
-      const launchpadData = launchpads.filter(
-        (pad) => pad.id === launchpadId
-      );
+      const launchpadData = launchpads.filter((pad) => pad.id === launchpadId);
       return launchpadData[0];
     }
   };
@@ -52,13 +49,11 @@ const Upcoming = ({ flights, launchpads, user }) => {
                 launchpad={launchpad(flights[3].launchpad)}
               />
             </Card>
-
           </ThreeCards>
         </Suspense>
-
       )}
     </>
-  )
-}
+  );
+};
 
-export default Upcoming
+export default Upcoming;

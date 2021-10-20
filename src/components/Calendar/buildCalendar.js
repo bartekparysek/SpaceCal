@@ -1,4 +1,11 @@
-import { startOfMonth, startOfWeek, endOfMonth, endOfWeek, startOfDay, addDays } from "date-fns";
+import {
+  startOfMonth,
+  startOfWeek,
+  endOfMonth,
+  endOfWeek,
+  startOfDay,
+  addDays,
+} from "date-fns";
 // generate week
 export function takeWeek(start = new Date()) {
   let date = startOfWeek(startOfDay(start), { weekStartsOn: 1 });
@@ -32,4 +39,3 @@ export function takeMonth(start = new Date()) {
     return range;
   };
 }
-

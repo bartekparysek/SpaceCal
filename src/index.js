@@ -8,10 +8,7 @@ import App from "./components/App";
 // 	composeEnhancers(applyMiddleware(reduxThunk))
 // );
 
-ReactDOM.render(
-	<App />,
-	document.querySelector("#root")
-);
+ReactDOM.render(<App />, document.querySelector("#root"));
 
 // if (window.Cypress) {
 // 	window.store = store;

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 import image from "./assets/app_background.jpeg";
 import mobile_image from "./assets/mobile_background.webp";
 
@@ -37,6 +37,6 @@ const GlobalStyle = createGlobalStyle`
    p{
       margin:0;
    }
-`
+`;
 
 export default GlobalStyle;

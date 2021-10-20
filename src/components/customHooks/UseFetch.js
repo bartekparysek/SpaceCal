@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import spaceX from "../../apis/spaceX";
 
 const useFetch = (url) => {
-  const [data, setData] = useState({ data: null, isFetching: false, error: null });
+  const [data, setData] = useState({
+    data: null,
+    isFetching: false,
+    error: null,
+  });
   const [endpoint] = useState(url);
 
   useEffect(() => {
@@ -15,15 +19,14 @@ const useFetch = (url) => {
         setData((prev) => ({
           ...prev,
           data: response.data,
-          isFetching: false
+          isFetching: false,
         }));
       } catch (error) {
-        setData((prev) => ({ ...prev, isFetching: false, error: error }))
+        setData((prev) => ({ ...prev, isFetching: false, error: error }));
       }
-    }
+    };
     fetchData();
-  }, [endpoint])
-  return data
-
-}
+  }, [endpoint]);
+  return data;
+};
 export default useFetch;
