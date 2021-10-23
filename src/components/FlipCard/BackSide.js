@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "../Link";
 import CalendarButton from "../CalendarButton";
 import { GrLinkNext } from "react-icons/gr";
 import DetailsLink from "./DetailsLink";
@@ -32,7 +31,7 @@ export const WrapperButton = styled.button`
   color: #000;
   font-size: 1rem;
   svg {
-    margin-right: 1rem;
+    margin-right: 0.5em;
   }
   p {
     white-space: nowrap;

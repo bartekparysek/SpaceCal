@@ -13,8 +13,17 @@ const DropWrapper = styled.div`
   min-width: calc(10vw - 1rem);
   border-radius: 4px;
   p {
-    padding: 1rem 2rem;
+    font-size: clamp(0.7rem, 0.8rem, 2rem);
     white-space: no-wrap;
+  }
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(1em, 2%, 2em) 0;
+  button {
+    padding: 0.7em 0.5em;
   }
 `;
 const Diamond = styled.div`
@@ -32,7 +41,7 @@ const DropDown = ({ children }) => {
   return (
     <DropWrapper>
       <Diamond />
-      {children}
+      <Content>{children}</Content>
     </DropWrapper>
   );
 };

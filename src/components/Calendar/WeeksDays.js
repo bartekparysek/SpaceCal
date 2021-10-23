@@ -18,7 +18,7 @@ const StyledGrid = styled.div`
   background-color: ${(props) => props.background};
   cursor: pointer;
   color: ${(props) => props.color};
-  div {
+  > div {
     padding: 0;
     font-size: clamp(0.75rem, 1rem, 1.5rem);
   }

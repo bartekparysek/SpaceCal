@@ -11,9 +11,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin-top: 0.5rem;
 
-  @media screen and (max-width: 800px) and (min-width: 500px) {
+  @media screen and (max-width: 1400px) and (min-width: 500px) {
     width: 45vw;
-    min-width: calc(100% - 1rem);
+    min-width: calc(100% - 2rem);
   }
 `;
 const Header = styled.div`

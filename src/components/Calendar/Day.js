@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { format, isSameDay } from "date-fns";
 import styled from "styled-components";
 import DropDown from "./DropDown";
@@ -31,7 +31,6 @@ const Day = ({ day, flights, open, selectedDate }) => {
   const flight = flights.find((el) =>
     isSameDay(new Date(el.date_utc), new Date(day))
   );
-  // Wyciągnąć flight id i flight name z flights
   if (flightDays.includes(new Date(day).toLocaleDateString())) {
     return (
       <MarkDay>

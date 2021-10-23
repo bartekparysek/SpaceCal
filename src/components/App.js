@@ -27,7 +27,7 @@ const StyledSection = styled.div`
   @media screen and (min-width: 250px) {
     width: 99%;
   }
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 900px) {
     width: 90%;
   }
   margin: 0 auto;
