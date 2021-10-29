@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import useOnClickOutside from "../customHooks/UseOnClickOutside";
 
 const DropWrapper = styled.div`
   position: absolute;
@@ -37,7 +38,13 @@ const Diamond = styled.div`
   box-shadow: rgba(99, 99, 99, 0.1) -1px -1px 2px 0px;
 `;
 
-const DropDown = ({ children }) => {
+const DropDown = ({ children, setOpen, open, node }) => {
+  const handleClickOutside = () => {
+    setOpen(!open);
+  };
+
+  useOnClickOutside(node, handleClickOutside);
+
   return (
     <DropWrapper>
       <Diamond />
