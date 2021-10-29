@@ -4,18 +4,18 @@ import useOnClickOutside from "../customHooks/UseOnClickOutside";
 
 const DropWrapper = styled.div`
   position: absolute;
-  top: 3rem;
+  top: 6ch;
   z-index: 99;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #ffff;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
-  min-width: calc(10vw - 1rem);
+  min-width: calc(10ch - 1rem);
   border-radius: 4px;
   p {
-    font-size: clamp(0.7rem, 0.8rem, 2rem);
-    white-space: no-wrap;
+    white-space: nowrap;
+    font-size: clamp(0.5rem, 1.5ch, 2rem);
   }
 `;
 const Content = styled.div`
@@ -24,7 +24,7 @@ const Content = styled.div`
   align-items: center;
   padding: clamp(1em, 2%, 2em) 0;
   button {
-    padding: 0.7em 0.5em;
+    padding: 1em clamp(0.5rem, 2%, 2rem);
   }
 `;
 const Diamond = styled.div`

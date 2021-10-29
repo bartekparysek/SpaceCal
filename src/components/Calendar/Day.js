@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { format, isSameDay } from "date-fns";
 import styled from "styled-components";
 import DropDown from "./DropDown";
@@ -12,7 +12,10 @@ const MarkDay = styled.div`
   background-color: inherit;
   border: none;
   cursor: pointer;
-  padding: 1em;
+  border-radius: inherit;
+  padding: clamp(0.5rem, 2%, 1rem) clamp(1.2rem, 5%, 3rem);
+  min-width: calc(4ch - 1em);
+
   &:after {
     position: absolute;
     content: " ";
@@ -23,28 +26,43 @@ const MarkDay = styled.div`
     display: block;
   }
 `;
+const RegularDay = styled.div`
+  display: flex;
+  justify-content: center;
+  min-width: calc(4ch - 1em);
+  font-size: clamp(0.75rem, 1rem, 1.5rem);
+  background-color: inherit;
+  border-radius: inherit;
+  padding: clamp(0.5rem, 2%, 1rem) clamp(1.2rem, 5%, 3rem);
+`;
 
-const Day = ({ day, flights, open, selectedDate }) => {
+const Day = ({ setOpen, day, flights, open, selectedDate }) => {
+  const node = useRef(null);
   const flightDays = flights.map((el) =>
     new Date(el.date_utc).toLocaleDateString()
   );
   const flight = flights.find((el) =>
     isSameDay(new Date(el.date_utc), new Date(day))
   );
+
   if (flightDays.includes(new Date(day).toLocaleDateString())) {
     return (
-      <MarkDay>
-        {format(day, "d")}
+      <MarkDay ref={node}>
+        <div>{format(day, "d")}</div>
         {open && isSameDay(new Date(day), new Date(selectedDate)) && (
-          <DropDown>
+          <DropDown node={node} setOpen={setOpen} open={open}>
             <p>{!undefined && flight.name}</p>
-            <DetailsLink flight={flight} />
+            <DetailsLink dropdown flight={flight} />
           </DropDown>
         )}
       </MarkDay>
     );
   } else {
-    return <div>{format(day, "d")}</div>;
+    return (
+      <RegularDay>
+        <div>{format(day, "d")}</div>
+      </RegularDay>
+    );
   }
 };
 
