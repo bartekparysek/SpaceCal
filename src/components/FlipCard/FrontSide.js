@@ -8,8 +8,8 @@ const FrontCard = styled.div`
   position: absolute;
   background-color: #f7f7f7;
   min-height: 15vh;
-  width: 25vw;
-  min-width: calc(100% - 2rem);
+  width: 30ch;
+  min-width: calc(100% - 1rem);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

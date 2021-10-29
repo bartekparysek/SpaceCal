@@ -10,8 +10,8 @@ const CalendarContainer = styled.div`
   background-color: #f7f7f7;
   border-radius: 8px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
-  width: 25vw;
-  min-width: calc(100% - 2rem);
+  width: 30ch;
+  min-width: calc(100% - 1rem);
   /* height: 36vh;
 	max-height: calc(100% - 1rem); */
   padding: clamp(0.75rem, 2%, 1rem) 0;
