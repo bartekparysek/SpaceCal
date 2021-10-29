@@ -1,13 +1,11 @@
 import { rest } from "msw";
 
 export const handlers = [
-  // fetchUpcomingLaunches && fetchLaunchPads
   rest.get(
     "https://api.spacexdata.com/v4/launches/upcoming",
     (req, res, ctx) => {
       return res(
         ctx.json([
-          //date_utc, name, launchpad, details ,
           {
             date_utc: "2021-08-29T06:30:00.000Z",
             details: null,
