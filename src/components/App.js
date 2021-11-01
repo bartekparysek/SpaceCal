@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyle from "../globalStyles";
@@ -42,6 +42,15 @@ const App = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { data: flights } = useFetch("/launches/upcoming");
   const { data: launchpads } = useFetch("/launchpads");
+
+  useEffect(() => {
+    if (window.Cypress) {
+      setUser({
+        isSignedIn: true,
+        email: localStorage.getItem("googleCypress")?.user?.email,
+      });
+    }
+  }, []);
 
   return (
     <Router>

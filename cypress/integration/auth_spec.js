@@ -1,37 +1,25 @@
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 dotenv.config();
-describe('Google Auth process', () => {
+describe("Google Auth process", () => {
+  it("login process to google at main site", () => {
+    cy.visit("/");
 
-  it('login process to google at main site', () => {
-    cy.visit('/')
-    cy.loginByGoogleApi()
-    cy.contains('Add to Calendar').should('be.visible')
-
-    cy
-      .window()
-      .its('store')
-      .invoke('dispatch', { type: 'SIGN_OUT' })
-
-    cy.findByRole('button', { name: /Add to Calendar/i }).should('not.exist')
-  })
-
-  it('login process at launch details', () => {
-    cy.visit('/')
-
-    cy.findByTestId('details-link').click();
+    cy.findByRole("button", { name: /Google login/i }).should("be.visible");
 
     cy.loginByGoogleApi();
 
-    cy.contains('Add to Calendar').should('be.visible');
+    cy.contains("Sign out").should("be.visible");
+  });
+});
 
-    cy
-      .window()
-      .its('store')
-      .invoke('dispatch', { type: 'SIGN_OUT' });
+describe("Flip button ", () => {
+  it("flips and shows backside", () => {
+    cy.visit("/");
 
-    cy.findByRole('button', { name: /Add to Calendar/i }).should('not.exist')
+    cy.findAllByRole("button", { name: /Flip/i }).first().click();
 
-  })
+    cy.contains(/check details/i).should("be.visible");
 
-
-})
+    cy.contains(/add to calendar/i).should("be.visible");
+  });
+});
