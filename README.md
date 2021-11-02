@@ -27,7 +27,7 @@ The purpose of this application is to show upcoming SpaceX launches and add chos
 
 ## Features
 
-List of features ready and TODOs for future development
+List of features ready
 
 -  Authentication with Google
 -  Calendar events with Google Calendar API
