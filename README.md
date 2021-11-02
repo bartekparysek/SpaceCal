@@ -1,6 +1,6 @@
 # SpaceCal 🚀
 
-It's a calendar for upcoming SpaceX flight launches. You can log in using Google Authentication and add event you are interested in to your Google Calendar. This project uses React and Redux and I wanted to practise them by making something useful for me.
+It's a calendar for upcoming SpaceX flight launches. You can log in using Google Authentication and add event you are interested in to your Google Calendar. This project uses data from [SpaceXApi](https://github.com/r-spacex/SpaceX-API)
 
 ## Table of contents
 
@@ -13,7 +13,7 @@ It's a calendar for upcoming SpaceX flight launches. You can log in using Google
 
 ## General info
 
-The purpose of this application is to show upcoming SpaceX launches and add chosen events to your Google Calendar. It looks amazing when rocket comes from space and lands on its own, and that's why I want to remind myself about such a great view!
+The purpose of this application is to show upcoming SpaceX launches and add chosen event to your Google Calendar. It looks amazing when rocket comes from space and lands on its own, and that's why I want to remind myself about such a great view!
 
 ## [Live Demo!](https://space-calendar.vercel.app)
 
@@ -22,7 +22,8 @@ The purpose of this application is to show upcoming SpaceX launches and add chos
 -  React - version 17.0
 -  Axios - version 0.21.1
 -  Styled Components - version 5.2.1
--  Redux - version 4.0.5
+-  React Spring - version
+-  Cypress - version 8.0.0
 
 ## Features
 
@@ -31,13 +32,8 @@ List of features ready and TODOs for future development
 -  Authentication with Google
 -  Calendar events with Google Calendar API
 -  Responsive design
--  Redux Store
-
-To-do list:
-
 -  Monthly calendar with marked upcoming events
--  Link for live from SpaceX
--  Favorites tab with ability to add multiple events at once
+-  Map with exact location of flight launch
 
 ## Status
 
