@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import { format } from "date-fns";
+import styled from "styled-components";
 
 const FrontCard = styled.div`
   transform: translateX(-50%);
@@ -33,15 +33,15 @@ const Top = styled.div`
 `;
 
 const FrontSide = ({ flight, launchpad, children }) => {
-  const flightDate = new Date(flight.date_utc);
+  const flightDate = new Date(flight?.date_utc);
   return (
     <FrontCard key={"cardA"}>
       <Top>
-        <h2>{flight.name}</h2>
+        <h2>{flight?.name}</h2>
         {children}
       </Top>
-      {launchpad && <p>{`${launchpad.locality}, ${launchpad.region}`}</p>}
-      <p>{format(flightDate, "PPPP")}</p>
+      {launchpad && <p>{`${launchpad?.locality}, ${launchpad?.region}`}</p>}
+      {flight && <p>{format(flightDate, "PPPP")}</p>}
     </FrontCard>
   );
 };

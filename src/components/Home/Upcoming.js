@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from "react";
-import styled from "styled-components";
+
 import Spinner from "../Spinner";
+import styled from "styled-components";
+
 const FlightCard = lazy(() => import("../FlipCard/FlightCard"));
 
 const ThreeCards = styled.div`
@@ -30,25 +32,29 @@ const Upcoming = ({ flights, launchpads, user }) => {
               <FlightCard
                 user={user}
                 flight={flights[1]}
-                launchpad={launchpad(flights[1].launchpad)}
+                launchpad={launchpad(flights[1]?.launchpad)}
               />
             </Card>
 
-            <Card>
-              <FlightCard
-                user={user}
-                flight={flights[2]}
-                launchpad={launchpad(flights[2].launchpad)}
-              />
-            </Card>
+            {flights.length > 2 && (
+              <>
+                <Card>
+                  <FlightCard
+                    user={user}
+                    flight={flights[2]}
+                    launchpad={launchpad(flights[2]?.launchpad)}
+                  />
+                </Card>
 
-            <Card>
-              <FlightCard
-                user={user}
-                flight={flights[3]}
-                launchpad={launchpad(flights[3].launchpad)}
-              />
-            </Card>
+                <Card>
+                  <FlightCard
+                    user={user}
+                    flight={flights[3]}
+                    launchpad={launchpad(flights[3]?.launchpad)}
+                  />
+                </Card>
+              </>
+            )}
           </ThreeCards>
         </Suspense>
       )}
